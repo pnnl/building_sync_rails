@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE.txt", "Rakefile", "README.rdoc", "WARRANTY.txt"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "isomorphic", "~> 0.1.0"
+  s.add_dependency "isomorphic", "~> 0.1.1"
   s.add_dependency "logger-application", "~> 0.0.2"
   s.add_dependency "soap4r-ng", "~> 2.0.4"
   s.add_dependency "rails", "~> 4.2.11"
