@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "BuildingSync on Rails."
   s.license     = "BSD-2-Clause"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "LICENSE.txt", "Rakefile", "README.rdoc", "WARRANTY.txt"]
+  s.files = Dir["{app,bin,config,db,lib,public}/**/*", "LICENSE.txt", "Rakefile", "README.rdoc", "WARRANTY.txt"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "isomorphic", "~> 0.1.1"
