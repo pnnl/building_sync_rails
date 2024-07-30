@@ -1,16 +1,69 @@
 require "fileutils"
 require "open-uri"
+require "set"
+
+# @return [String] the format string for an XML Schema Definition (XSD) import element
+FORMAT_XSD_IMPORT_ = '<%s:import namespace="%s" schemaLocation="%s"/>'.freeze
+
+# @return [Regexp] the regular expression for an XML Schema Definition (XSD) import element
+REGEXP_XSD_IMPORT_ = ::Regexp.new([
+  ::Regexp.escape('<'),
+  '([^:]+)',
+  ::Regexp.escape(':import'),
+  '\s+',
+  ::Regexp.escape('namespace="'),
+  '([^"]+)',
+  ::Regexp.escape('"'),
+  '\s+',
+  ::Regexp.escape('schemaLocation="'),
+  '([^"]+)',
+  ::Regexp.escape('"'),
+  '\s*',
+  ::Regexp.escape('/>'),
+].join).freeze
+
+# Download an XML Schema Definition (XSD) file and recursively download its dependencies.
+#
+# @param url [String] the URL of the XML Schema Definition (XSD) file to download
+# @param verbose [Boolean] specifies the verbosity level
+# @param cached_urls [Set<String>] the cache of URLs that have been downloaded
+# @return [void]
+def download_schema_recursive(url, verbose = true, cached_urls = ::Set.new)
+  if cached_urls.include?(url)
+    return
+  else
+    cached_urls << url
+  end
+
+  $stderr.puts(::Kernel.sprintf("** Download %s", url)) if verbose
+
+  s = ::URI.parse(url).open do |io|
+    io.read.gsub(REGEXP_XSD_IMPORT_) { |match_s|
+      prefix = ::Regexp.last_match[1]
+      namespace = ::Regexp.last_match[2]
+      schema_location = ::Regexp.last_match[3]
+
+      download_schema_recursive(schema_location, verbose, cached_urls)
+
+      # @note Replace the URL with the path on the local disk.
+      ::Kernel.sprintf(FORMAT_XSD_IMPORT_, prefix, namespace, schema_location.split(::File::SEPARATOR)[-1])
+    }
+  end
+
+  # @note Open the new file in binary mode to avoid character encoding issues.
+  ::File.open(::File.join("public", url.split(::File::SEPARATOR)[-1]), "wb") do |io|
+    io.puts(s)
+  end
+
+  return
+end
 
 namespace :building_sync_rails do
   desc "Use BuildingSync XSD file to generate Ruby code via `xsd2ruby.rb` script."
   task :xsd2ruby => :environment do
-    # @!attribute [r] path_xsd_origin
-    #   @return [String] the location of the BuildingSync XSD file on the local disk
-    path_xsd_origin = ::File.join("public", "BuildingSync.xsd")
-
     # @!attribute [r] uri_xsd_remote
-    #   @return [URI] the location of the BuildingSync XSD file on the remote nework
-    uri_xsd_remote = ::URI.parse("https://raw.githubusercontent.com/BuildingSync/schema/gbXML_externalref/BuildingSync.xsd")
+    #   @return [String] the location of the BuildingSync XSD file on the remote nework
+    uri_xsd_remote = "https://github.com/BuildingSync/schema/raw/develop-v2/BuildingSync.xsd"
 
     # @!attribute [r] options_by_local_name
     #   @return [Hash<String, Hash<Symbol, Array<Hash<Symbol, Object>>>>] the options by the local name of each Ruby source file
@@ -65,22 +118,16 @@ namespace :building_sync_rails do
     }
 
     # @note Download the BuildingSync XSD file from the remote network and copy to the local disk.
-    uri_xsd_remote.open do |io_xsd_remote|
-      ::File.open(path_xsd_origin, "w") do |io_xsd_origin|
-        ::IO.copy_stream(io_xsd_remote, io_xsd_origin)
-      end
-    end
+    download_schema_recursive(uri_xsd_remote, verbose)
 
     # @note Execute the "xsd2ruby.rb" binary that is installed by the "soap4r" gem.  The Ruby source files are created in the "/" directory.
     ::Bundler.with_clean_env do
-      `xsd2ruby.rb --xsd #{path_xsd_origin} --module_path "BuildingSync" --classdef "BuildingSync" --mapping_registry --mapper --force --quiet`
+      `xsd2ruby.rb --xsd #{::File.join("public", uri_xsd_remote.split(::File::SEPARATOR)[-1])} --module_path "BuildingSync" --classdef "BuildingSync" --mapping_registry --mapper --force --quiet`
     end
 
     # @note Sanitize the contents of each Ruby source file.
     options_by_local_name.each do |local_name, options|
-      src_path_rb_origin = ::File.join(local_name)
-
-      s = ::File.open(src_path_rb_origin, "r") do |file|
+      s = ::File.open(local_name, "r") do |file|
         array = file.read.split($/)
 
         options[:delete_at].each do |hash|
@@ -97,16 +144,14 @@ namespace :building_sync_rails do
         array.join($/)
       end
 
-      ::File.open(src_path_rb_origin, "w") do |file|
+      ::File.open(local_name, "w") do |file|
         file.puts(s)
       end
     end
 
     # @note Move the Ruby source files to the "lib/" directory.
     options_by_local_name.keys.each do |local_name|
-      src_path_rb_origin = ::File.join(local_name)
-      dest_path_rb_origin = ::File.join("lib", local_name)
-      ::FileUtils.mv(src_path_rb_origin, dest_path_rb_origin) if ::File.exist?(src_path_rb_origin)
+      ::FileUtils.mv(local_name, ::File.join("lib", local_name)) if ::File.exist?(local_name)
     end
   end
 end
