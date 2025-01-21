@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:auc="http://buildingsync.net/schemas/bedes-auc/2019" xmlns:gbxml="http://www.gbxml.org/schema" targetNamespace="http://buildingsync.net/schemas/bedes-auc/2019" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.4.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:auc="http://buildingsync.net/schemas/bedes-auc/2019" xmlns:gbxml="http://www.gbxml.org/schema" targetNamespace="http://buildingsync.net/schemas/bedes-auc/2019" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.6.0">
   <xs:import namespace="http://www.gbxml.org/schema" schemaLocation="GreenBuildingXML_Ver6.01.xsd"/>
   <xs:annotation>
-    <xs:documentation>BuildingSync Schema - Version 2.4.0</xs:documentation>
+    <xs:documentation>BuildingSync Schema - Version 2.6.0</xs:documentation>
     <xs:documentation xmlns="http://www.w3.org/1999/xhtml">
       <h1>BuildingSync Schema Deprecation Policy</h1>
       <p>This document details the deprecation policy for the BuildingSync Schema.</p>
@@ -417,6 +417,13 @@
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
+                    <xs:element name="AuditCycles" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="AuditCycle" type="auc:AuditCycleType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
                     <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
                   </xs:sequence>
                   <xs:attribute name="ID" type="xs:ID" use="required"/>
@@ -442,6 +449,10 @@
             <xs:enumeration value="2.3"/>
             <xs:enumeration value="2.4.0"/>
             <xs:enumeration value="2.4"/>
+            <xs:enumeration value="2.5.0"/>
+            <xs:enumeration value="2.5"/>
+            <xs:enumeration value="2.6.0"/>
+            <xs:enumeration value="2.6"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
@@ -848,7 +859,9 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element ref="auc:PrincipalHVACSystemType" minOccurs="0"/>
       <xs:element ref="auc:YearOfConstruction" minOccurs="0"/>
+      <xs:element ref="auc:PrincipalLightingSystemType" minOccurs="0"/>
       <xs:element name="YearOccupied" type="xs:gYear" minOccurs="0">
         <xs:annotation>
           <xs:documentation>Year in which the premises was first occupied. (CCYY)</xs:documentation>
@@ -959,6 +972,8 @@
                   <xs:element ref="auc:SpatialUnits" minOccurs="0"/>
                   <xs:element ref="auc:PrimaryContactID" minOccurs="0"/>
                   <xs:element ref="auc:TenantIDs" minOccurs="0" maxOccurs="unbounded"/>
+                  <xs:element ref="auc:PrincipalHVACSystemType" minOccurs="0"/>
+                  <xs:element ref="auc:PrincipalLightingSystemType" minOccurs="0"/>
                   <xs:element ref="auc:YearOfConstruction" minOccurs="0"/>
                   <xs:element name="FootprintShape" minOccurs="0">
                     <xs:annotation>
@@ -1962,6 +1977,45 @@
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
   </xs:complexType>
+  <xs:complexType name="AuditCycleType">
+    <xs:annotation>
+      <xs:documentation>A period of time in which multiple audits may be conducted</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AuditCycleName" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name identifying the audit cycle other than the ID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AuditCycleNotes" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Details about the Audit Cycle</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AuditCycleStartYear" type="xs:gYear">
+        <xs:annotation>
+          <xs:documentation>Year the Audit Cycle starts (inclusive, CCYY)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AuditCycleEndYear" type="xs:gYear">
+        <xs:annotation>
+          <xs:documentation>Year the Audit Cycle ends (inclusive, CCYY)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AuditCycleStartDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Date the Audit Cycle starts (CCYY-MM-DD)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AuditCycleEndDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Date the Audit Cycle ends (CCYY-MM-DD)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:ID" use="required"/>
+  </xs:complexType>
   <xs:complexType name="ScenarioType">
     <xs:sequence>
       <xs:element name="ScenarioName" type="xs:string" minOccurs="0">
@@ -2120,6 +2174,11 @@
                   <xs:element ref="auc:AnnualSavingsAverageGHGEmissions" minOccurs="0"/>
                   <xs:element ref="auc:AnnualSavingsMarginalGHGEmissions" minOccurs="0"/>
                   <xs:element ref="auc:AnnualSavingsGHGEmissionIntensity" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsEnergy" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsEnergyCost" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsWater" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsWaterCost" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsAncillaryCost" minOccurs="0"/>
                   <xs:element ref="auc:SimplePayback" minOccurs="0"/>
                   <xs:element ref="auc:NetPresentValue" minOccurs="0"/>
                   <xs:element ref="auc:InternalRateOfReturn" minOccurs="0"/>
@@ -2143,6 +2202,9 @@
                             <xs:documentation>ID number of measure.</xs:documentation>
                           </xs:annotation>
                           <xs:complexType>
+                            <xs:sequence>
+                              <xs:element ref="auc:MeasureSavingsAnalysis" minOccurs="0"/>
+                            </xs:sequence>
                             <xs:attribute name="IDref" type="xs:IDREF" use="required"/>
                           </xs:complexType>
                         </xs:element>
@@ -2205,6 +2267,11 @@
                   <xs:element ref="auc:AnnualSavingsAverageGHGEmissions" minOccurs="0"/>
                   <xs:element ref="auc:AnnualSavingsMarginalGHGEmissions" minOccurs="0"/>
                   <xs:element ref="auc:AnnualSavingsGHGEmissionIntensity" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsEnergy" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsEnergyCost" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsWater" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsWaterCost" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsAncillaryCost" minOccurs="0"/>
                   <xs:element name="ImplementationPeriod" type="xs:integer" minOccurs="0">
                     <xs:annotation>
                       <xs:documentation>Total period of time necessary to implement all measures in the package. (months)</xs:documentation>
@@ -2320,6 +2387,11 @@
                   <xs:element ref="auc:AnnualSavingsAverageGHGEmissions" minOccurs="0"/>
                   <xs:element ref="auc:AnnualSavingsMarginalGHGEmissions" minOccurs="0"/>
                   <xs:element ref="auc:AnnualSavingsGHGEmissionIntensity" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsEnergy" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsEnergyCost" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsWater" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsWaterCost" minOccurs="0"/>
+                  <xs:element ref="auc:LifeCycleSavingsAncillaryCost" minOccurs="0"/>
                   <xs:element ref="auc:SimplePayback" minOccurs="0"/>
                   <xs:element ref="auc:NetPresentValue" minOccurs="0"/>
                   <xs:element ref="auc:InternalRateOfReturn" minOccurs="0"/>
@@ -3820,6 +3892,13 @@
                               <xs:enumeration value="Add energy recovery"/>
                               <xs:enumeration value="Convert gas-fired unit to boiler loop"/>
                               <xs:enumeration value="Convert system from steam to hot water"/>
+                              <xs:enumeration value="Add boiler automatic chemical feed system"/>
+                              <xs:enumeration value="Install boiler condensate return system"/>
+                              <xs:enumeration value="Install boiler automatic blowdown system"/>
+                              <xs:enumeration value="Install boiler blowdown heat exchanger"/>
+                              <xs:enumeration value="Install boiler expansion flash tank"/>
+                              <xs:enumeration value="Install meters on boiler make-up lines"/>
+                              <xs:enumeration value="Install dehumidification system"/>
                               <xs:enumeration value="Clean and/or repair"/>
                               <xs:enumeration value="Implement training and/or documentation"/>
                               <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
@@ -3849,6 +3928,13 @@
                               <xs:enumeration value="Install gas cooling"/>
                               <xs:enumeration value="Add or repair economizer cycle"/>
                               <xs:enumeration value="Add or replace cooling tower"/>
+                              <xs:enumeration value="Implement advanced cooling tower controls to manage cycles of concentration"/>
+                              <xs:enumeration value="Install cooling tower water treatment system"/>
+                              <xs:enumeration value="Install automated chemical feed systems for cooling tower management"/>
+                              <xs:enumeration value="Install conductivity controller for cooling tower management"/>
+                              <xs:enumeration value="Install covers on open distribution decks on top of cooling tower"/>
+                              <xs:enumeration value="Install flow meters on make-up and blowdown lines for cooling tower management"/>
+                              <xs:enumeration value="Install side-stream filtration system for cooling tower management"/>
                               <xs:enumeration value="Clean and/or repair"/>
                               <xs:enumeration value="Implement training and/or documentation"/>
                               <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
@@ -3920,6 +4006,10 @@
                               <xs:enumeration value="Install variable refrigerant flow system"/>
                               <xs:enumeration value="Capture and return condensate"/>
                               <xs:enumeration value="Install or Upgrade Master Venting"/>
+                              <xs:enumeration value="Retrofit single-pass cooling with an automatic shut-off device"/>
+                              <xs:enumeration value="Retrofit single-pass cooling with closed loop/recirculation system"/>
+                              <xs:enumeration value="Install water-efficient evaporative cooler"/>
+                              <xs:enumeration value="Replace water-cooled equipment with air-cooled equipment"/>
                               <xs:enumeration value="Clean and/or repair"/>
                               <xs:enumeration value="Implement training and/or documentation"/>
                               <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
@@ -3996,6 +4086,8 @@
                               <xs:enumeration value="Replace windows"/>
                               <xs:enumeration value="Increase floor insulation"/>
                               <xs:enumeration value="Insulate foundation"/>
+                              <xs:enumeration value="Add secondary window systems/attachments"/>
+                              <xs:enumeration value="Install shading automation system"/>
                               <xs:enumeration value="Clean and/or repair"/>
                               <xs:enumeration value="Close elevator and/or stairwell shaft vents"/>
                               <xs:enumeration value="Other"/>
@@ -4031,6 +4123,7 @@
                               <xs:enumeration value="Install or upgrade master venting"/>
                               <xs:enumeration value="Replace steam traps with orifice plates"/>
                               <xs:enumeration value="Install steam condensate heat recovery"/>
+                              <xs:enumeration value="Install leak detection system"/>
                               <xs:enumeration value="Clean and/or repair"/>
                               <xs:enumeration value="Implement training and/or documentation"/>
                               <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
@@ -4245,6 +4338,15 @@
                               <xs:enumeration value="Install low-flow plumbing equipment"/>
                               <xs:enumeration value="Install onsite sewer treatment systems"/>
                               <xs:enumeration value="Implement water efficient irrigation"/>
+                              <xs:enumeration value="Remove water softeners with timers"/>
+                              <xs:enumeration value="Install high-efficiency faucet aerator in lavatory public restrooms"/>
+                              <xs:enumeration value="Install WaterSense-qualified faucet aerator in lavatory private restrooms"/>
+                              <xs:enumeration value="Install WaterSense-qualified showerhead"/>
+                              <xs:enumeration value="Install WaterSense-qualified flushometer toilets"/>
+                              <xs:enumeration value="Install WaterSense-qualified tank toilets"/>
+                              <xs:enumeration value="Install WaterSense-qualified flushing urinal"/>
+                              <xs:enumeration value="Install leak detection system"/>
+                              <xs:enumeration value="Install temporary shut-off or foot-operated valves with kitchen faucets"/>
                               <xs:enumeration value="Clean and/or repair"/>
                               <xs:enumeration value="Implement training and/or documentation"/>
                               <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
@@ -4392,6 +4494,170 @@
                               <xs:enumeration value="Implement hot aisle cold aisle design"/>
                               <xs:enumeration value="Implement server virtualization"/>
                               <xs:enumeration value="Upgrade servers"/>
+                              <xs:enumeration value="Eliminate redundant power supplies"/>
+                              <xs:enumeration value="Install battery storage"/>
+                              <xs:enumeration value="Replace inefficient hardware"/>
+                              <xs:enumeration value="Clean and/or repair"/>
+                              <xs:enumeration value="Implement training and/or documentation"/>
+                              <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
+                              <xs:enumeration value="Other"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="AlternativeWaterSources" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Alternative water sources options for water saving.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="MeasureName" maxOccurs="unbounded">
+                          <xs:annotation>
+                            <xs:documentation>Short description of measure.</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="Install condensate capture equipment"/>
+                              <xs:enumeration value="Install atmospheric water generator"/>
+                              <xs:enumeration value="Install wastewater treatment plant"/>
+                              <xs:enumeration value="Install rainwater harvesting system"/>
+                              <xs:enumeration value="Install cooling tower blowdown for appropriate applications"/>
+                              <xs:enumeration value="Install desalinated water treatment for reuse"/>
+                              <xs:enumeration value="Use discharged water from water purification processes"/>
+                              <xs:enumeration value="Install foundation water treatment for reuse"/>
+                              <xs:enumeration value="Install greywater reuse system"/>
+                              <xs:enumeration value="Clean and/or repair"/>
+                              <xs:enumeration value="Implement training and/or documentation"/>
+                              <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
+                              <xs:enumeration value="Other"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="KitchenImprovements" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Kitchen improvements.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="MeasureName" maxOccurs="unbounded">
+                          <xs:annotation>
+                            <xs:documentation>Short description of measure.</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="Retrofit single-pass cooling ice machine to closed loop"/>
+                              <xs:enumeration value="Install food disposal load sensing device"/>
+                              <xs:enumeration value="Replace with ENERGY STAR-qualified commercial dishwashers"/>
+                              <xs:enumeration value="Replace with ENERGY STAR-qualified steam cookers or boilerless commercial steam cookers"/>
+                              <xs:enumeration value="Replace with ENERGY STAR-qualified ice machine"/>
+                              <xs:enumeration value="Replace food disposal with food pulper system"/>
+                              <xs:enumeration value="Install WaterSense-qualified pre-rinse spray valves"/>
+                              <xs:enumeration value="Install in-line flow restrictor on dipper wells"/>
+                              <xs:enumeration value="Install steam kettle with condensate return"/>
+                              <xs:enumeration value="Clean and/or repair"/>
+                              <xs:enumeration value="Implement training and/or documentation"/>
+                              <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
+                              <xs:enumeration value="Other"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="LaboratoryAndMedicalEquipments" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Improvements for laboratory and medical equipments.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="MeasureName" maxOccurs="unbounded">
+                          <xs:annotation>
+                            <xs:documentation>Short description of measure.</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="Install dry vacuum or air-cooled vacuum pump"/>
+                              <xs:enumeration value="Retrofit liquid-ring vacuum pump with a water recovery system"/>
+                              <xs:enumeration value="Install digital photographic or X-ray equipment"/>
+                              <xs:enumeration value="Retrofit traditional photographic or X-ray equipment with a water recycling system"/>
+                              <xs:enumeration value="Install water-efficient glassware washer with water recycling system"/>
+                              <xs:enumeration value="Retrofit glassware washer with water recycling system"/>
+                              <xs:enumeration value="Install pretreatment of water purification equipment to increase system recovery"/>
+                              <xs:enumeration value="Install high efficiency water purification system with high recovery rate"/>
+                              <xs:enumeration value="Install steam sterilizer system with automated tempering system and automatic shut off"/>
+                              <xs:enumeration value="Retrofit vivarium washing equipment with water recycling system"/>
+                              <xs:enumeration value="Install water-efficient vivarium washing equipment with advanced controls and water recycling"/>
+                              <xs:enumeration value="Install water-efficient vivarium watering equipment with recirculation system"/>
+                              <xs:enumeration value="Install steam sterilizer condensate retrofit kit"/>
+                              <xs:enumeration value="Clean and/or repair"/>
+                              <xs:enumeration value="Implement training and/or documentation"/>
+                              <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
+                              <xs:enumeration value="Other"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="IrrigationSystemsAndLandscapingImprovements" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Improvements for irrigation systems and landscaping.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="MeasureName" maxOccurs="unbounded">
+                          <xs:annotation>
+                            <xs:documentation>Short description of measure.</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="Install advanced weather-based irrigation controller"/>
+                              <xs:enumeration value="Install advanced soil-moisture based irrigation controller"/>
+                              <xs:enumeration value="Install water-efficient irrigation sprinkler heads"/>
+                              <xs:enumeration value="Reprogram irrigation controller to water-efficient settings"/>
+                              <xs:enumeration value="Install irrigation meter"/>
+                              <xs:enumeration value="Install micro-irrigation or drip irrigation"/>
+                              <xs:enumeration value="Install irrigation sprinkler shut-off device"/>
+                              <xs:enumeration value="Remove or Recirculate ornamental water feature"/>
+                              <xs:enumeration value="Install native/adaptive plants"/>
+                              <xs:enumeration value="Remove high water consuming plants or replace with native/adaptive plants"/>
+                              <xs:enumeration value="Clean and/or repair"/>
+                              <xs:enumeration value="Implement training and/or documentation"/>
+                              <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
+                              <xs:enumeration value="Other"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="WashingEquipmentsAndTechiques" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Improvements for washing equipments and techiques.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="MeasureName" maxOccurs="unbounded">
+                          <xs:annotation>
+                            <xs:documentation>Short description of measure.</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="Install automatic shutoff nozzle for self-service vehicle wash"/>
+                              <xs:enumeration value="Implement water-efficient optimization for vehicle washing equipment"/>
+                              <xs:enumeration value="Retrofit vehicle washing equipment with water recycling system"/>
+                              <xs:enumeration value="Install high-pressure self-service vehicle washer"/>
+                              <xs:enumeration value="Install ozone system for laundry equipment"/>
+                              <xs:enumeration value="Install water-efficient conveyor/in-bay vehicle washing equipment"/>
+                              <xs:enumeration value="Install ENERGY STAR-qualified laundry washing machines"/>
+                              <xs:enumeration value="Install water-efficient industrial/commercial laundry equipment"/>
+                              <xs:enumeration value="Retrofit laundry washing equipment with water recycling system"/>
+                              <xs:enumeration value="Install meter on vehicle wash system"/>
                               <xs:enumeration value="Clean and/or repair"/>
                               <xs:enumeration value="Implement training and/or documentation"/>
                               <xs:enumeration value="Upgrade operating protocols, calibration, and/or sequencing"/>
@@ -4488,60 +4754,7 @@
           <xs:documentation>Long description of measure.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="MeasureSavingsAnalysis" minOccurs="0">
-        <xs:annotation>
-          <xs:documentation>Energy and cost effectiveness data for an individual measure. In most cases, this data depends on the other measures included in the package, and should be entered at the package level under Scenarios.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="MeasureRank" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>Sequence in which the measure was analyzed relative to other measures. Ranking should be 1 if it is analyzed first, 2 if analyzed after Measure 1 is applied, etc. This accounts for interactive effects between measures. Ranking may be 1 for all measures if they are not analyzed as a package.</xs:documentation>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:simpleContent>
-                  <xs:extension base="xs:integer">
-                    <xs:attribute ref="auc:Source"/>
-                  </xs:extension>
-                </xs:simpleContent>
-              </xs:complexType>
-            </xs:element>
-            <xs:element ref="auc:ReferenceCase" minOccurs="0"/>
-            <xs:element ref="auc:CalculationMethod" minOccurs="0"/>
-            <xs:element ref="auc:AnnualSavingsSiteEnergy" minOccurs="0"/>
-            <xs:element ref="auc:AnnualSavingsSourceEnergy" minOccurs="0"/>
-            <xs:element ref="auc:AnnualSavingsCost" minOccurs="0"/>
-            <xs:element ref="auc:AnnualSavingsByFuels" minOccurs="0"/>
-            <xs:element ref="auc:SummerPeakElectricityReduction" minOccurs="0"/>
-            <xs:element ref="auc:WinterPeakElectricityReduction" minOccurs="0"/>
-            <xs:element ref="auc:AnnualPeakElectricityReduction" minOccurs="0"/>
-            <xs:element ref="auc:AnnualDemandSavingsCost" minOccurs="0"/>
-            <xs:element ref="auc:AnnualWaterSavings" minOccurs="0"/>
-            <xs:element ref="auc:AnnualWaterCostSavings" minOccurs="0"/>
-            <xs:element ref="auc:OMCostAnnualSavings" minOccurs="0"/>
-            <xs:element name="OtherCostAnnualSavings" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>Annual savings for other non-energy costs, or increased revenue caused by measure implementation. ($)</xs:documentation>
-              </xs:annotation>
-              <xs:complexType>
-                <xs:simpleContent>
-                  <xs:extension base="xs:decimal">
-                    <xs:attribute ref="auc:Source"/>
-                  </xs:extension>
-                </xs:simpleContent>
-              </xs:complexType>
-            </xs:element>
-            <xs:element ref="auc:EquipmentDisposalAndSalvageCosts" minOccurs="0"/>
-            <xs:element ref="auc:FundingFromIncentives" minOccurs="0"/>
-            <xs:element ref="auc:FundingFromTaxCredits" minOccurs="0"/>
-            <xs:element ref="auc:NPVofTaxImplications" minOccurs="0"/>
-            <xs:element ref="auc:CostEffectivenessScreeningMethod" minOccurs="0"/>
-            <xs:element ref="auc:SimplePayback" minOccurs="0"/>
-            <xs:element ref="auc:NetPresentValue" minOccurs="0"/>
-            <xs:element ref="auc:InternalRateOfReturn" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
+      <xs:element ref="auc:MeasureSavingsAnalysis" minOccurs="0"/>
       <xs:element ref="auc:MVCost" minOccurs="0"/>
       <xs:element name="MVOption" minOccurs="0">
         <xs:annotation>
@@ -4564,7 +4777,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:simpleContent>
-            <xs:extension base="xs:decimal">
+            <xs:extension base="xs:nonNegativeInteger">
               <xs:attribute ref="auc:Source"/>
             </xs:extension>
           </xs:simpleContent>
@@ -4757,6 +4970,65 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
+      <xs:element name="FacilityEvaluationAuditDefinition" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The facility audit terms used in the FEMP Facility Evaluation (Audit) resources that satisfy EISA 432 requirements</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="BasicOnsiteAudit">
+              <xs:annotation>
+                <xs:documentation>A basic onsite audit meets the minimum requirements for onsite facility evaluations</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="ASHRAE Level 1 Audit"/>
+                  <xs:enumeration value="Industrial Assessment Center (IAC) Audit"/>
+                  <xs:enumeration value="Utility Incentive Program Audit"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="DetailedOnsiteAudit">
+              <xs:annotation>
+                <xs:documentation>A more in-depth facility evaluation that is performed when project development is the focus and a more precise LCCA is required</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="ASHRAE Level 2 Audit"/>
+                  <xs:enumeration value="ASHRAE Level 3 Audit"/>
+                  <xs:enumeration value="Deep Energy Retrofit Audit"/>
+                  <xs:enumeration value="Preliminary Assessment (PA)"/>
+                  <xs:enumeration value="Investment Grade Audit (IGA)"/>
+                  <xs:enumeration value="Retrocommissioning Audit"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="BasicRemoteAudit">
+              <xs:annotation>
+                <xs:documentation>A facility evaluation performed without a site visit and analysis of datasets from specific building systems or operations to derive opportunities for energy efficiency, water efficiency, and renewable energy generation</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Rapid/Automated Audit"/>
+                  <xs:enumeration value="Continuous Monitoring of Building Systems"/>
+                  <xs:enumeration value="Portfolio Screening Analysis"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="DetailedRemoteAudit">
+              <xs:annotation>
+                <xs:documentation>A facility evaluation performed without a site visit and rigorous analysis of building systems and operations to identify opportunities for energy efficiency, water efficiency, and renewable energy generation</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Desk Audit"/>
+                  <xs:enumeration value="Remote Controls Audit"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="RetrocommissioningAudit" type="xs:boolean" minOccurs="0">
         <xs:annotation>
           <xs:documentation>True if an assessment of retro- or re-commissioning measures was completed as part of the audit.</xs:documentation>
@@ -4777,6 +5049,20 @@
       <xs:element name="DiscountFactor" minOccurs="0">
         <xs:annotation>
           <xs:documentation>Discount factor applied to calculate present values of future cash flows. (0-100) (%)</xs:documentation>
+          <xs:documentation>Discount factors $v$ are related to discount rates $i$ by the following equation: $v=\frac{1}{1+i}$.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:decimal">
+              <xs:attribute ref="auc:Source"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DiscountRate" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Discount rate applied to calculate present values of future cash flows. (0-100) (%)</xs:documentation>
+          <xs:documentation>Discount rates $i$ are related to discount factors $v$ by the following equation: $i=\frac{1-v}{v}$ where $v \neq 0$.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:simpleContent>
@@ -4961,6 +5247,7 @@
         </xs:complexType>
       </xs:element>
       <xs:element ref="auc:LinkedPremisesOrSystem" minOccurs="0"/>
+      <xs:element ref="auc:LinkedAuditCycles" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
@@ -5206,6 +5493,7 @@
                         <xs:element ref="auc:ModelNumber" minOccurs="0"/>
                         <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
                         <xs:element ref="auc:Quantity" minOccurs="0"/>
+                        <xs:element ref="auc:EquipmentID" minOccurs="0"/>
                       </xs:sequence>
                       <xs:attribute name="ID" type="xs:ID" use="required"/>
                       <xs:attribute ref="auc:Status"/>
@@ -5356,6 +5644,7 @@
                         <xs:element ref="auc:ModelNumber" minOccurs="0"/>
                         <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
                         <xs:element ref="auc:Quantity" minOccurs="0"/>
+                        <xs:element ref="auc:EquipmentID" minOccurs="0"/>
                       </xs:sequence>
                       <xs:attribute name="ID" type="xs:ID" use="required"/>
                       <xs:attribute ref="auc:Status"/>
@@ -5548,6 +5837,7 @@
                         <xs:element ref="auc:ThirdPartyCertification" minOccurs="0"/>
                         <xs:element ref="auc:Quantity" minOccurs="0"/>
                         <xs:element name="DeliveryCondition" type="auc:EquipmentCondition" minOccurs="0"/>
+                        <xs:element ref="auc:EquipmentID" minOccurs="0"/>
                       </xs:sequence>
                       <xs:attribute name="ID" type="xs:ID" use="required"/>
                       <xs:attribute ref="auc:Status">
@@ -5625,32 +5915,7 @@
             </xs:restriction>
           </xs:simpleType>
         </xs:element>
-        <xs:element name="PrincipalHVACSystemType" minOccurs="0">
-          <xs:annotation>
-            <xs:documentation>Principal HVAC type.</xs:documentation>
-          </xs:annotation>
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="Packaged Terminal Air Conditioner"/>
-              <xs:enumeration value="Four Pipe Fan Coil Unit"/>
-              <xs:enumeration value="Packaged Terminal Heat Pump"/>
-              <xs:enumeration value="Packaged Rooftop Air Conditioner"/>
-              <xs:enumeration value="Packaged Rooftop Heat Pump"/>
-              <xs:enumeration value="Packaged Rooftop VAV with Hot Water Reheat"/>
-              <xs:enumeration value="Packaged Rooftop VAV with Electric Reheat"/>
-              <xs:enumeration value="VAV with Hot Water Reheat"/>
-              <xs:enumeration value="VAV with Electric Reheat"/>
-              <xs:enumeration value="Warm Air Furnace"/>
-              <xs:enumeration value="Ventilation Only"/>
-              <xs:enumeration value="Dedicated Outdoor Air System"/>
-              <xs:enumeration value="Water Loop Heat Pump"/>
-              <xs:enumeration value="Ground Source Heat Pump"/>
-              <xs:enumeration value="VRF Terminal Unit"/>
-              <xs:enumeration value="Chilled Beam"/>
-              <xs:enumeration value="Other"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:element>
+        <xs:element ref="auc:PrincipalHVACSystemType" minOccurs="0"/>
       </xs:choice>
       <xs:element name="HVACControlSystemTypes" minOccurs="0">
         <xs:annotation>
@@ -6310,6 +6575,19 @@
         <xs:element ref="auc:NoCooling" minOccurs="0"/>
         <xs:element ref="auc:Unknown" minOccurs="0"/>
       </xs:choice>
+      <xs:element name="CondenserType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Type of condenser associated with the cooling plant. The usage of this element is not recommended except for Audit Template use cases. User is recommended to use CondenserPlant instead.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Air Cooled"/>
+            <xs:enumeration value="Water Cooled"/>
+            <xs:enumeration value="Other"/>
+            <xs:enumeration value="Unknown"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
       <xs:element name="CoolingPlantCondition" type="auc:EquipmentCondition" minOccurs="0"/>
       <xs:element ref="auc:Location" minOccurs="0"/>
       <xs:element ref="auc:YearInstalled" minOccurs="0"/>
@@ -6886,10 +7164,38 @@
       </xs:element>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
   </xs:complexType>
+  <xs:element name="PrincipalHVACSystemType">
+    <xs:annotation>
+      <xs:documentation>Principal HVAC type.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Packaged Terminal Air Conditioner"/>
+        <xs:enumeration value="Four Pipe Fan Coil Unit"/>
+        <xs:enumeration value="Packaged Terminal Heat Pump"/>
+        <xs:enumeration value="Packaged Rooftop Air Conditioner"/>
+        <xs:enumeration value="Packaged Rooftop Heat Pump"/>
+        <xs:enumeration value="Packaged Rooftop VAV with Hot Water Reheat"/>
+        <xs:enumeration value="Packaged Rooftop VAV with Electric Reheat"/>
+        <xs:enumeration value="VAV with Hot Water Reheat"/>
+        <xs:enumeration value="VAV with Electric Reheat"/>
+        <xs:enumeration value="Warm Air Furnace"/>
+        <xs:enumeration value="Ventilation Only"/>
+        <xs:enumeration value="Dedicated Outdoor Air System"/>
+        <xs:enumeration value="Water Loop Heat Pump"/>
+        <xs:enumeration value="Ground Source Heat Pump"/>
+        <xs:enumeration value="VRF Terminal Unit"/>
+        <xs:enumeration value="Chilled Beam"/>
+        <xs:enumeration value="Other"/>
+        <xs:enumeration value="Unknown"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
   <xs:complexType name="LightingSystemType">
     <xs:sequence>
       <xs:element name="LampType" minOccurs="0">
@@ -7361,10 +7667,43 @@
       </xs:element>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
   </xs:complexType>
+  <xs:element name="PrincipalLightingSystemType">
+    <xs:annotation>
+      <xs:documentation>Principal Lighting type for a building or a section. The usage of this element is not recommended except for Audit Template use cases.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Incandescent"/>
+        <xs:enumeration value="Linear Fluorescent"/>
+        <xs:enumeration value="Compact Fluorescent"/>
+        <xs:enumeration value="Halogen"/>
+        <xs:enumeration value="High Intensity Discharge"/>
+        <xs:enumeration value="Solid State Lighting"/>
+        <xs:enumeration value="LED"/>
+        <xs:enumeration value="Mercury Vapor"/>
+        <xs:enumeration value="Metal Halide"/>
+        <xs:enumeration value="Sodium Vapor High Pressure"/>
+        <xs:enumeration value="T5"/>
+        <xs:enumeration value="T5HO"/>
+        <xs:enumeration value="T8"/>
+        <xs:enumeration value="Super T8"/>
+        <xs:enumeration value="T12"/>
+        <xs:enumeration value="T12HO"/>
+        <xs:enumeration value="Induction"/>
+        <xs:enumeration value="Neon"/>
+        <xs:enumeration value="Plasma"/>
+        <xs:enumeration value="Photoluminescent"/>
+        <xs:enumeration value="Self Luminous"/>
+        <xs:enumeration value="Other"/>
+        <xs:enumeration value="Unknown"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
   <xs:complexType name="DomesticHotWaterSystemType">
     <xs:sequence>
       <xs:element name="DomesticHotWaterType" minOccurs="0">
@@ -7553,6 +7892,7 @@
                                           <xs:element ref="auc:Manufacturer" minOccurs="0"/>
                                           <xs:element ref="auc:ModelNumber" minOccurs="0"/>
                                           <xs:element ref="auc:Location" minOccurs="0"/>
+                                          <xs:element ref="auc:EquipmentID" minOccurs="0"/>
                                         </xs:sequence>
                                       </xs:complexType>
                                     </xs:element>
@@ -7867,6 +8207,7 @@
       </xs:element>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -7976,6 +8317,7 @@
       </xs:element>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -8228,6 +8570,7 @@
                         </xs:element>
                         <xs:element ref="auc:Manufacturer" minOccurs="0"/>
                         <xs:element ref="auc:ModelNumber" minOccurs="0"/>
+                        <xs:element ref="auc:EquipmentID" minOccurs="0"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -8259,6 +8602,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -8372,6 +8716,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -8484,6 +8829,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -8643,6 +8989,7 @@
       <xs:element ref="auc:Location" minOccurs="0"/>
       <xs:element ref="auc:LinkedSystemIDs" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -8865,6 +9212,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:LinkedSystemIDs" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -9010,6 +9358,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:LinkedSystemIDs" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -9097,6 +9446,7 @@
       <xs:element ref="auc:ModelNumber" minOccurs="0"/>
       <xs:element ref="auc:Location" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -10216,6 +10566,7 @@
       <xs:element ref="auc:Manufacturer" minOccurs="0"/>
       <xs:element ref="auc:ModelNumber" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -10651,6 +11002,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -10741,6 +11093,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Source"/>
@@ -10824,6 +11177,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Source"/>
@@ -10913,6 +11267,7 @@
       <xs:element ref="auc:Location" minOccurs="0"/>
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -11218,6 +11573,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -11343,6 +11699,7 @@
       <xs:element ref="auc:Location" minOccurs="0"/>
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -11450,6 +11807,7 @@
       <xs:element ref="auc:LinkedPremises" minOccurs="0"/>
       <xs:element ref="auc:UserDefinedFields" minOccurs="0"/>
       <xs:element ref="auc:Quantity" minOccurs="0"/>
+      <xs:element ref="auc:EquipmentID" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="ID" type="xs:ID" use="required"/>
     <xs:attribute ref="auc:Status"/>
@@ -13693,62 +14051,80 @@
   </xs:element>
   <xs:simpleType name="AuditorQualificationType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Professional Engineer (PE)"/>
-      <xs:enumeration value="Associated Air Balance Council (AABC) Certified Member Agency"/>
-      <xs:enumeration value="Associated Air Balance Council (AABC) Test and Balance Technician"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Carbon Reduction Manager (CRM)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Sustainable Development Professional (CSDP)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Power Quality Professional (CPQ)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Demand Side Manager (CDSM)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Energy Procurement Professional (CEP)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Lighting Efficiency Professional (CLEP)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Measurement &amp; Verification Professional (CMVP)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified GeoExchange Designer Program (CGD)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Business Energy Professional (BEP)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Industrial Energy Professional (CIEP)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Water Efficiency Professional (CWEP)"/>
-      <xs:enumeration value="Association of Energy Engineers Energy Efficiency Practitioner (EEP)"/>
-      <xs:enumeration value="Association of Energy Engineers Renewable Energy Professional (REP)"/>
-      <xs:enumeration value="Association of Energy Engineers Distributed Generation Certified Professional (DGCP)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Building Energy Simulation Analyst (BESA)"/>
-      <xs:enumeration value="Association of Energy Engineers Performance Contracting and Funding Professional (PCF)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Residential Energy Auditor (REA)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Building Commissioning Firm Program (CBCF)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Green Building Engineer (GBE)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Energy Manager (CEM)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Energy Auditor (CEA)"/>
-      <xs:enumeration value="Association of Energy Engineers Certified Building Commissioning Professional (CBCP)"/>
-      <xs:enumeration value="Building Operator Certification (BOC): Level 1"/>
-      <xs:enumeration value="Building Operator Certification (BOC): Level 2"/>
-      <xs:enumeration value="Building Performance Institute (BPI) Certification"/>
-      <xs:enumeration value="Building Performance Institute (BPI): Building Analyst (BA)"/>
-      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional (HEP)"/>
-      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional - Energy Auditor (HEP-EA)"/>
-      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional - Quality Control Inspector (HEP-QCI)"/>
-      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional - Retrofit Installer (HEP-RI)"/>
-      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional - Crew Leader (HEP-CL)"/>
-      <xs:enumeration value="Building Performance Institute (BPI): Multifamily Building Analyst"/>
-      <xs:enumeration value="Residential Energy Services Network (RESNET) Certification"/>
-      <xs:enumeration value="Residential Energy Services Network (RESNET) - Home Partner"/>
-      <xs:enumeration value="Registered Architect (RA)"/>
-      <xs:enumeration value="Refrigerating System Operating Engineer"/>
-      <xs:enumeration value="High Pressure Boiler Operating Engineer"/>
-      <xs:enumeration value="Certified Commissioning Professional (CCP)"/>
-      <xs:enumeration value="Associate Commissioning Professional (ACP)"/>
-      <xs:enumeration value="Existing Building Commissioning Professional (EBCP)"/>
-      <xs:enumeration value="Commissioning Process Management Professional (CPMP)"/>
-      <xs:enumeration value="Accredited Commissioning Process Authority Professional (CxAP)"/>
-      <xs:enumeration value="NYSERDA FlexTech Consultant"/>
+      <xs:enumeration value="AABC Commissioning Group (ACG) Commissioning Authority (CxA)"/>
       <xs:enumeration value="ASHRAE Building Commissioning Professional (BCxP)"/>
       <xs:enumeration value="ASHRAE Building Energy Assessment Professional (BEAP)"/>
       <xs:enumeration value="ASHRAE Building Energy Modeling Professional (BEMP)"/>
+      <xs:enumeration value="Accredited Commissioning Process Authority Professional (CxAP)"/>
+      <xs:enumeration value="Associate Commissioning Professional (ACP)"/>
+      <xs:enumeration value="Associated Air Balance Council (AABC) Certified Member Agency"/>
+      <xs:enumeration value="Associated Air Balance Council (AABC) Test and Balance Technician"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Building Commissioning Firm (CBCF)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Building Commissioning Professional (CBCP)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Building Energy Simulation Analyst (BESA)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Business Energy Professional (BEP)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Carbon Reduction Manager (CRM)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Demand Side Manager (CDSM)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Energy Auditor (CEA)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Energy Manager (CEM)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Energy Procurement Professional (CEP)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified GeoExchange Designer Program (CGD)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Green Building Engineer (GBE)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Industrial Energy Professional (CIEP)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Lighting Efficiency Professional (CLEP)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Measurement &amp; Verification Professional (CMVP)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Power Quality Professional (CPQ)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Residential Energy Auditor (REA)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Sustainable Development Professional (CSDP)"/>
+      <xs:enumeration value="Association of Energy Engineers Certified Water Efficiency Professional (CWEP)"/>
+      <xs:enumeration value="Association of Energy Engineers Distributed Generation Certified Professional (DGCP)"/>
+      <xs:enumeration value="Association of Energy Engineers Energy Efficiency Practitioner (EEP)"/>
+      <xs:enumeration value="Association of Energy Engineers Performance Contracting and Funding Professional (PCF)"/>
+      <xs:enumeration value="Association of Energy Engineers Renewable Energy Professional (REP)"/>
+      <xs:enumeration value="Building Commissioning Association (BCA) Certified Commissioning Professional (CCP)"/>
+      <xs:enumeration value="Building Commissioning Certification Board (BCCB) Certified Commissioning Professional (CCP)"/>
+      <xs:enumeration value="Building Operator Certification (BOC): Level 1"/>
+      <xs:enumeration value="Building Operator Certification (BOC): Level 2"/>
+      <xs:enumeration value="Building Owners and Managers Institute (BOMI) International - Facilities Management Administrator (FMA)"/>
+      <xs:enumeration value="Building Owners and Managers Institute (BOMI) International - High-Performance Sustainable Building Management (BOMI-HP)"/>
+      <xs:enumeration value="Building Owners and Managers Institute (BOMI) International - Real Property Administrator (RPA)"/>
+      <xs:enumeration value="Building Owners and Managers Institute (BOMI) International - System Maintenance Administrator (SMA)"/>
+      <xs:enumeration value="Building Owners and Managers Institute (BOMI) International - System Maintenance Technician (SMT)"/>
+      <xs:enumeration value="Building Performance Institute (BPI) Certification"/>
+      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional (HEP)"/>
+      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional - Crew Leader (HEP-CL)"/>
+      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional - Energy Auditor (HEP-EA)"/>
+      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional - Quality Control Inspector (HEP-QCI)"/>
+      <xs:enumeration value="Building Performance Institute (BPI): Advanced Home Energy Professional - Retrofit Installer (HEP-RI)"/>
+      <xs:enumeration value="Building Performance Institute (BPI): Building Analyst (BA)"/>
+      <xs:enumeration value="Building Performance Institute (BPI): Multifamily Building Analyst"/>
+      <xs:enumeration value="Certified Commissioning Professional (CCP)"/>
+      <xs:enumeration value="Commissioning Process Management Professional (CPMP)"/>
       <xs:enumeration value="Department of Buildings (DOB) Approved Agent"/>
-      <xs:enumeration value="High-Performance Building Design Professional (HBDP)"/>
+      <xs:enumeration value="Energy Management Association (EMA): Energy Management Professional (EMP)"/>
+      <xs:enumeration value="Existing Building Commissioning Professional (EBCP)"/>
       <xs:enumeration value="GreenPoint Rater Existing Home Multifamily Rater"/>
       <xs:enumeration value="HERS Whole House (HERS II) Rater"/>
+      <xs:enumeration value="High Pressure Boiler Operating Engineer"/>
+      <xs:enumeration value="High-Performance Building Design Professional (HBDP)"/>
+      <xs:enumeration value="International Facility Management Association (IFMA) Certified Facilities Manager (CFM)"/>
+      <xs:enumeration value="International Facility Management Association (IFMA) Facility Management Professional (FMP)"/>
+      <xs:enumeration value="International Facility Management Association (IFMA) Sustainability Facility Professional (SFP)"/>
       <xs:enumeration value="International Union of Operating Engineers Certified Energy Specialist"/>
+      <xs:enumeration value="Mechanical, Electrical and Plumbing (MEP) Professional Engineer (PE)"/>
+      <xs:enumeration value="New York State Energy Research and Development Authority (NYSERDA) FlexTech Consultant"/>
+      <xs:enumeration value="National Environmental Balancing Bureau (NEBB) Building Systems Commissioning (BSC)"/>
+      <xs:enumeration value="National Environmental Balancing Bureau (NEBB) Commissioning Process Professional (CxPP)"/>
       <xs:enumeration value="Northwest Energy Education Institute Energy Management Certification"/>
       <xs:enumeration value="PhD in Mechanical Engineering"/>
+      <xs:enumeration value="Professional Engineer (PE)"/>
+      <xs:enumeration value="Refrigerating System Operating Engineer"/>
+      <xs:enumeration value="Registered Architect (RA)"/>
+      <xs:enumeration value="Residential Energy Services Network (RESNET) - Home Partner"/>
+      <xs:enumeration value="Residential Energy Services Network (RESNET) Certification"/>
+      <xs:enumeration value="University of Wisconsin Accredited Commissioning Process Authority Professional (CxAP or CAP)"/>
+      <xs:enumeration value="University of Wisconsin Accredited Commissioning Process Manager (CxM)"/>
+      <xs:enumeration value="University of Wisconsin Accredited Green Commissioning Process Provider (GCxP or GCP)"/>
       <xs:enumeration value="Other"/>
       <xs:enumeration value="None"/>
     </xs:restriction>
@@ -15658,6 +16034,9 @@
                   </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
+              <xs:element ref="auc:AnnualSavingsAverageGHGEmissions" minOccurs="0"/>
+              <xs:element ref="auc:AnnualSavingsMarginalGHGEmissions" minOccurs="0"/>
+              <xs:element ref="auc:AnnualSavingsGHGEmissionIntensity" minOccurs="0"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -15751,6 +16130,66 @@
   <xs:element name="AnnualSavingsGHGEmissionIntensity">
     <xs:annotation>
       <xs:documentation>Annual GHG emissions intensity savings per year. (kg CO2e/ft2/year)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute ref="auc:Source"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LifeCycleSavingsEnergy">
+    <xs:annotation>
+      <xs:documentation>Estimated total energy savings in the whole life cycle (MMBtu)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute ref="auc:Source"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LifeCycleSavingsEnergyCost">
+    <xs:annotation>
+      <xs:documentation>Estimated present value of total savings in energy costs in the whole life cycle ($)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute ref="auc:Source"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LifeCycleSavingsWater">
+    <xs:annotation>
+      <xs:documentation>Estimated total water savings in the whole life cycle (gal)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute ref="auc:Source"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LifeCycleSavingsWaterCost">
+    <xs:annotation>
+      <xs:documentation>Estimated present value of total savings in water costs in the whole life cycle ($)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute ref="auc:Source"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LifeCycleSavingsAncillaryCost">
+    <xs:annotation>
+      <xs:documentation>Estimated present value of total savings in ancillary/other costs in the whole life cycle ($)</xs:documentation>
     </xs:annotation>
     <xs:complexType>
       <xs:simpleContent>
@@ -16382,6 +16821,28 @@
       <xs:attribute name="IDref" type="xs:IDREF" use="required"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="LinkedAuditCycle">
+    <xs:annotation>
+      <xs:documentation>ID number of the associated Audit Cycle for the report</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IndexYearOfAuditCycle" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Index number of the year when the audit is conducted from the start of the audit cycle. 1 corresponds to auc:AuditCycleStartYear.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="IDref" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LinkedAuditCycles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="auc:LinkedAuditCycle" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MVCost">
     <xs:annotation>
       <xs:documentation>Annual cost to verify energy savings. ($/year)</xs:documentation>
@@ -16853,6 +17314,73 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="SpatialUnit" type="auc:SpatialUnitTypeType" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EquipmentID" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Identifier for the equipment.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="MeasureSavingsAnalysis">
+    <xs:annotation>
+      <xs:documentation>Energy and cost effectiveness data for an individual measure. In most cases, this data depends on the other measures included in the package, and should be entered at the package level under Scenarios.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MeasureRank" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Sequence in which the measure was analyzed relative to other measures. Ranking should be 1 if it is analyzed first, 2 if analyzed after Measure 1 is applied, etc. This accounts for interactive effects between measures. Ranking may be 1 for all measures if they are not analyzed as a package.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:integer">
+                <xs:attribute ref="auc:Source"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="auc:ReferenceCase" minOccurs="0"/>
+        <xs:element ref="auc:CalculationMethod" minOccurs="0"/>
+        <xs:element ref="auc:AnnualSavingsSiteEnergy" minOccurs="0"/>
+        <xs:element ref="auc:AnnualSavingsSourceEnergy" minOccurs="0"/>
+        <xs:element ref="auc:AnnualSavingsCost" minOccurs="0"/>
+        <xs:element ref="auc:AnnualSavingsByFuels" minOccurs="0"/>
+        <xs:element ref="auc:SummerPeakElectricityReduction" minOccurs="0"/>
+        <xs:element ref="auc:WinterPeakElectricityReduction" minOccurs="0"/>
+        <xs:element ref="auc:AnnualPeakElectricityReduction" minOccurs="0"/>
+        <xs:element ref="auc:AnnualDemandSavingsCost" minOccurs="0"/>
+        <xs:element ref="auc:AnnualWaterSavings" minOccurs="0"/>
+        <xs:element ref="auc:AnnualWaterCostSavings" minOccurs="0"/>
+        <xs:element ref="auc:AnnualSavingsAverageGHGEmissions" minOccurs="0"/>
+        <xs:element ref="auc:AnnualSavingsMarginalGHGEmissions" minOccurs="0"/>
+        <xs:element ref="auc:AnnualSavingsGHGEmissionIntensity" minOccurs="0"/>
+        <xs:element ref="auc:LifeCycleSavingsEnergy" minOccurs="0"/>
+        <xs:element ref="auc:LifeCycleSavingsEnergyCost" minOccurs="0"/>
+        <xs:element ref="auc:LifeCycleSavingsWater" minOccurs="0"/>
+        <xs:element ref="auc:LifeCycleSavingsWaterCost" minOccurs="0"/>
+        <xs:element ref="auc:LifeCycleSavingsAncillaryCost" minOccurs="0"/>
+        <xs:element ref="auc:OMCostAnnualSavings" minOccurs="0"/>
+        <xs:element name="OtherCostAnnualSavings" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Annual savings for other non-energy costs, or increased revenue caused by measure implementation. ($)</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:decimal">
+                <xs:attribute ref="auc:Source"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="auc:EquipmentDisposalAndSalvageCosts" minOccurs="0"/>
+        <xs:element ref="auc:FundingFromIncentives" minOccurs="0"/>
+        <xs:element ref="auc:FundingFromTaxCredits" minOccurs="0"/>
+        <xs:element ref="auc:NPVofTaxImplications" minOccurs="0"/>
+        <xs:element ref="auc:CostEffectivenessScreeningMethod" minOccurs="0"/>
+        <xs:element ref="auc:SimplePayback" minOccurs="0"/>
+        <xs:element ref="auc:NetPresentValue" minOccurs="0"/>
+        <xs:element ref="auc:InternalRateOfReturn" minOccurs="0"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
