@@ -140,7 +140,9 @@ module BuildingSync
   #   horizontalSurroundings - SOAP::SOAPString
   #   verticalSurroundings - SOAP::SOAPString
   #   assessments - BuildingSync::BuildingType::Assessments
+  #   principalHVACSystemType - SOAP::SOAPString
   #   yearOfConstruction - SOAP::SOAPGYear
+  #   principalLightingSystemType - SOAP::SOAPString
   #   yearOccupied - SOAP::SOAPGYear
   #   yearOfLastEnergyAudit - SOAP::SOAPGYear
   #   retrocommissioningDate - SOAP::SOAPDate
@@ -525,6 +527,8 @@ module BuildingSync
       #   spatialUnits - BuildingSync::SpatialUnits
       #   primaryContactID - BuildingSync::PrimaryContactID
       #   tenantIDs - BuildingSync::TenantIDs
+      #   principalHVACSystemType - SOAP::SOAPString
+      #   principalLightingSystemType - SOAP::SOAPString
       #   yearOfConstruction - SOAP::SOAPGYear
       #   footprintShape - SOAP::SOAPString
       #   numberOfSides - BuildingSync::BuildingType::Sections::Section::NumberOfSides
@@ -1264,6 +1268,8 @@ module BuildingSync
         attr_accessor :spatialUnits
         attr_accessor :primaryContactID
         attr_accessor :tenantIDs
+        attr_accessor :principalHVACSystemType
+        attr_accessor :principalLightingSystemType
         attr_accessor :yearOfConstruction
         attr_accessor :footprintShape
         attr_accessor :numberOfSides
@@ -1300,7 +1306,7 @@ module BuildingSync
           __xmlattr[AttrID] = value
         end
 
-        def initialize(premisesName = nil, sectionType = nil, premisesNotes = nil, premisesIdentifiers = nil, occupancyClassification = nil, originalOccupancyClassification = nil, occupancyLevels = nil, typicalOccupantUsages = nil, spatialUnits = nil, primaryContactID = nil, tenantIDs = [], yearOfConstruction = nil, footprintShape = nil, numberOfSides = nil, story = nil, floorAreas = nil, thermalZoneLayout = nil, perimeterZoneDepth = nil, sideA1Orientation = nil, sides = nil, roofs = nil, ceilings = nil, exteriorFloors = nil, foundations = nil, xOffset = nil, yOffset = nil, zOffset = nil, floorsAboveGrade = nil, floorsBelowGrade = nil, floorsPartiallyBelowGrade = nil, floorToFloorHeight = nil, floorToCeilingHeight = nil, userDefinedFields = nil, thermalZones = nil)
+        def initialize(premisesName = nil, sectionType = nil, premisesNotes = nil, premisesIdentifiers = nil, occupancyClassification = nil, originalOccupancyClassification = nil, occupancyLevels = nil, typicalOccupantUsages = nil, spatialUnits = nil, primaryContactID = nil, tenantIDs = [], principalHVACSystemType = nil, principalLightingSystemType = nil, yearOfConstruction = nil, footprintShape = nil, numberOfSides = nil, story = nil, floorAreas = nil, thermalZoneLayout = nil, perimeterZoneDepth = nil, sideA1Orientation = nil, sides = nil, roofs = nil, ceilings = nil, exteriorFloors = nil, foundations = nil, xOffset = nil, yOffset = nil, zOffset = nil, floorsAboveGrade = nil, floorsBelowGrade = nil, floorsPartiallyBelowGrade = nil, floorToFloorHeight = nil, floorToCeilingHeight = nil, userDefinedFields = nil, thermalZones = nil)
           @premisesName = premisesName
           @sectionType = sectionType
           @premisesNotes = premisesNotes
@@ -1312,6 +1318,8 @@ module BuildingSync
           @spatialUnits = spatialUnits
           @primaryContactID = primaryContactID
           @tenantIDs = tenantIDs
+          @principalHVACSystemType = principalHVACSystemType
+          @principalLightingSystemType = principalLightingSystemType
           @yearOfConstruction = yearOfConstruction
           @footprintShape = footprintShape
           @numberOfSides = numberOfSides
@@ -1389,7 +1397,9 @@ module BuildingSync
     attr_accessor :horizontalSurroundings
     attr_accessor :verticalSurroundings
     attr_accessor :assessments
+    attr_accessor :principalHVACSystemType
     attr_accessor :yearOfConstruction
+    attr_accessor :principalLightingSystemType
     attr_accessor :yearOccupied
     attr_accessor :yearOfLastEnergyAudit
     attr_accessor :retrocommissioningDate
@@ -1414,7 +1424,7 @@ module BuildingSync
       __xmlattr[AttrID] = value
     end
 
-    def initialize(premisesName = nil, premisesNotes = nil, premisesIdentifiers = nil, address = nil, climateZoneType = nil, eGRIDRegionCode = nil, eGRIDSubregionCodes = nil, weatherDataStationID = nil, weatherStationName = nil, weatherStationCategory = nil, weatherStations = nil, longitude = nil, latitude = nil, buildingClassification = nil, occupancyClassification = nil, occupancyLevels = nil, typicalOccupantUsages = nil, spatialUnits = nil, ownership = nil, ownershipStatus = nil, primaryContactID = nil, tenantIDs = [], multiTenant = nil, nAICSCode = nil, publiclySubsidized = nil, federalBuilding = nil, portfolioManager = nil, numberOfBusinesses = nil, floorsAboveGrade = nil, floorsBelowGrade = nil, conditionedFloorsAboveGrade = nil, conditionedFloorsBelowGrade = nil, unconditionedFloorsAboveGrade = nil, unconditionedFloorsBelowGrade = nil, buildingAutomationSystem = nil, lightingAutomationSystem = nil, historicalLandmark = nil, floorAreas = nil, aspectRatio = nil, perimeter = nil, totalExteriorAboveGradeWallArea = nil, totalExteriorBelowGradeWallArea = nil, totalCommonConditionedAboveGradeWallArea = nil, overallWindowToWallRatio = nil, overallDoorToWallRatio = nil, heightDistribution = nil, horizontalSurroundings = nil, verticalSurroundings = nil, assessments = nil, yearOfConstruction = nil, yearOccupied = nil, yearOfLastEnergyAudit = nil, retrocommissioningDate = nil, yearOfLatestRetrofit = nil, yearOfLastMajorRemodel = nil, percentOccupiedByOwner = nil, percentLeasedByOwner = nil, numberOfFacilitiesOnSite = nil, operatorType = nil, sections = nil, userDefinedFields = nil)
+    def initialize(premisesName = nil, premisesNotes = nil, premisesIdentifiers = nil, address = nil, climateZoneType = nil, eGRIDRegionCode = nil, eGRIDSubregionCodes = nil, weatherDataStationID = nil, weatherStationName = nil, weatherStationCategory = nil, weatherStations = nil, longitude = nil, latitude = nil, buildingClassification = nil, occupancyClassification = nil, occupancyLevels = nil, typicalOccupantUsages = nil, spatialUnits = nil, ownership = nil, ownershipStatus = nil, primaryContactID = nil, tenantIDs = [], multiTenant = nil, nAICSCode = nil, publiclySubsidized = nil, federalBuilding = nil, portfolioManager = nil, numberOfBusinesses = nil, floorsAboveGrade = nil, floorsBelowGrade = nil, conditionedFloorsAboveGrade = nil, conditionedFloorsBelowGrade = nil, unconditionedFloorsAboveGrade = nil, unconditionedFloorsBelowGrade = nil, buildingAutomationSystem = nil, lightingAutomationSystem = nil, historicalLandmark = nil, floorAreas = nil, aspectRatio = nil, perimeter = nil, totalExteriorAboveGradeWallArea = nil, totalExteriorBelowGradeWallArea = nil, totalCommonConditionedAboveGradeWallArea = nil, overallWindowToWallRatio = nil, overallDoorToWallRatio = nil, heightDistribution = nil, horizontalSurroundings = nil, verticalSurroundings = nil, assessments = nil, principalHVACSystemType = nil, yearOfConstruction = nil, principalLightingSystemType = nil, yearOccupied = nil, yearOfLastEnergyAudit = nil, retrocommissioningDate = nil, yearOfLatestRetrofit = nil, yearOfLastMajorRemodel = nil, percentOccupiedByOwner = nil, percentLeasedByOwner = nil, numberOfFacilitiesOnSite = nil, operatorType = nil, sections = nil, userDefinedFields = nil)
       @premisesName = premisesName
       @premisesNotes = premisesNotes
       @premisesIdentifiers = premisesIdentifiers
@@ -1464,7 +1474,9 @@ module BuildingSync
       @horizontalSurroundings = horizontalSurroundings
       @verticalSurroundings = verticalSurroundings
       @assessments = assessments
+      @principalHVACSystemType = principalHVACSystemType
       @yearOfConstruction = yearOfConstruction
+      @principalLightingSystemType = principalLightingSystemType
       @yearOccupied = yearOccupied
       @yearOfLastEnergyAudit = yearOfLastEnergyAudit
       @retrocommissioningDate = retrocommissioningDate
@@ -2168,6 +2180,50 @@ module BuildingSync
     end
   end
 
+  # {http://buildingsync.net/schemas/bedes-auc/2019}AuditCycleType
+  #   auditCycleName - SOAP::SOAPString
+  #   auditCycleNotes - SOAP::SOAPString
+  #   auditCycleStartYear - SOAP::SOAPGYear
+  #   auditCycleEndYear - SOAP::SOAPGYear
+  #   auditCycleStartDate - SOAP::SOAPDate
+  #   auditCycleEndDate - SOAP::SOAPDate
+  #   userDefinedFields - BuildingSync::UserDefinedFields
+  #   xmlattr_ID - SOAP::SOAPID
+  class AuditCycleType
+    AttrID = XSD::QName.new(nil, "ID")
+
+    attr_accessor :auditCycleName
+    attr_accessor :auditCycleNotes
+    attr_accessor :auditCycleStartYear
+    attr_accessor :auditCycleEndYear
+    attr_accessor :auditCycleStartDate
+    attr_accessor :auditCycleEndDate
+    attr_accessor :userDefinedFields
+
+    def __xmlattr
+      @__xmlattr ||= {}
+    end
+
+    def xmlattr_ID
+      __xmlattr[AttrID]
+    end
+
+    def xmlattr_ID=(value)
+      __xmlattr[AttrID] = value
+    end
+
+    def initialize(auditCycleName = nil, auditCycleNotes = nil, auditCycleStartYear = nil, auditCycleEndYear = nil, auditCycleStartDate = nil, auditCycleEndDate = nil, userDefinedFields = nil)
+      @auditCycleName = auditCycleName
+      @auditCycleNotes = auditCycleNotes
+      @auditCycleStartYear = auditCycleStartYear
+      @auditCycleEndYear = auditCycleEndYear
+      @auditCycleStartDate = auditCycleStartDate
+      @auditCycleEndDate = auditCycleEndDate
+      @userDefinedFields = userDefinedFields
+      @__xmlattr = {}
+    end
+  end
+
   # {http://buildingsync.net/schemas/bedes-auc/2019}ScenarioType
   #   scenarioName - SOAP::SOAPString
   #   scenarioNotes - SOAP::SOAPString
@@ -2349,6 +2405,11 @@ module BuildingSync
       #   annualSavingsAverageGHGEmissions - BuildingSync::AnnualSavingsAverageGHGEmissions
       #   annualSavingsMarginalGHGEmissions - BuildingSync::AnnualSavingsMarginalGHGEmissions
       #   annualSavingsGHGEmissionIntensity - BuildingSync::AnnualSavingsGHGEmissionIntensity
+      #   lifeCycleSavingsEnergy - BuildingSync::LifeCycleSavingsEnergy
+      #   lifeCycleSavingsEnergyCost - BuildingSync::LifeCycleSavingsEnergyCost
+      #   lifeCycleSavingsWater - BuildingSync::LifeCycleSavingsWater
+      #   lifeCycleSavingsWaterCost - BuildingSync::LifeCycleSavingsWaterCost
+      #   lifeCycleSavingsAncillaryCost - BuildingSync::LifeCycleSavingsAncillaryCost
       #   simplePayback - BuildingSync::SimplePayback
       #   netPresentValue - BuildingSync::NetPresentValue
       #   internalRateOfReturn - BuildingSync::InternalRateOfReturn
@@ -2367,13 +2428,18 @@ module BuildingSync
         attr_accessor :annualSavingsAverageGHGEmissions
         attr_accessor :annualSavingsMarginalGHGEmissions
         attr_accessor :annualSavingsGHGEmissionIntensity
+        attr_accessor :lifeCycleSavingsEnergy
+        attr_accessor :lifeCycleSavingsEnergyCost
+        attr_accessor :lifeCycleSavingsWater
+        attr_accessor :lifeCycleSavingsWaterCost
+        attr_accessor :lifeCycleSavingsAncillaryCost
         attr_accessor :simplePayback
         attr_accessor :netPresentValue
         attr_accessor :internalRateOfReturn
         attr_accessor :assetScore
         attr_accessor :eNERGYSTARScore
 
-        def initialize(referenceCase = nil, annualSavingsSiteEnergy = nil, annualSavingsSourceEnergy = nil, annualSavingsCost = nil, summerPeakElectricityReduction = nil, winterPeakElectricityReduction = nil, annualPeakElectricityReduction = nil, annualWaterSavings = nil, annualWaterCostSavings = nil, annualSavingsAverageGHGEmissions = nil, annualSavingsMarginalGHGEmissions = nil, annualSavingsGHGEmissionIntensity = nil, simplePayback = nil, netPresentValue = nil, internalRateOfReturn = nil, assetScore = nil, eNERGYSTARScore = nil)
+        def initialize(referenceCase = nil, annualSavingsSiteEnergy = nil, annualSavingsSourceEnergy = nil, annualSavingsCost = nil, summerPeakElectricityReduction = nil, winterPeakElectricityReduction = nil, annualPeakElectricityReduction = nil, annualWaterSavings = nil, annualWaterCostSavings = nil, annualSavingsAverageGHGEmissions = nil, annualSavingsMarginalGHGEmissions = nil, annualSavingsGHGEmissionIntensity = nil, lifeCycleSavingsEnergy = nil, lifeCycleSavingsEnergyCost = nil, lifeCycleSavingsWater = nil, lifeCycleSavingsWaterCost = nil, lifeCycleSavingsAncillaryCost = nil, simplePayback = nil, netPresentValue = nil, internalRateOfReturn = nil, assetScore = nil, eNERGYSTARScore = nil)
           @referenceCase = referenceCase
           @annualSavingsSiteEnergy = annualSavingsSiteEnergy
           @annualSavingsSourceEnergy = annualSavingsSourceEnergy
@@ -2386,6 +2452,11 @@ module BuildingSync
           @annualSavingsAverageGHGEmissions = annualSavingsAverageGHGEmissions
           @annualSavingsMarginalGHGEmissions = annualSavingsMarginalGHGEmissions
           @annualSavingsGHGEmissionIntensity = annualSavingsGHGEmissionIntensity
+          @lifeCycleSavingsEnergy = lifeCycleSavingsEnergy
+          @lifeCycleSavingsEnergyCost = lifeCycleSavingsEnergyCost
+          @lifeCycleSavingsWater = lifeCycleSavingsWater
+          @lifeCycleSavingsWaterCost = lifeCycleSavingsWaterCost
+          @lifeCycleSavingsAncillaryCost = lifeCycleSavingsAncillaryCost
           @simplePayback = simplePayback
           @netPresentValue = netPresentValue
           @internalRateOfReturn = internalRateOfReturn
@@ -2414,6 +2485,11 @@ module BuildingSync
       #   annualSavingsAverageGHGEmissions - BuildingSync::AnnualSavingsAverageGHGEmissions
       #   annualSavingsMarginalGHGEmissions - BuildingSync::AnnualSavingsMarginalGHGEmissions
       #   annualSavingsGHGEmissionIntensity - BuildingSync::AnnualSavingsGHGEmissionIntensity
+      #   lifeCycleSavingsEnergy - BuildingSync::LifeCycleSavingsEnergy
+      #   lifeCycleSavingsEnergyCost - BuildingSync::LifeCycleSavingsEnergyCost
+      #   lifeCycleSavingsWater - BuildingSync::LifeCycleSavingsWater
+      #   lifeCycleSavingsWaterCost - BuildingSync::LifeCycleSavingsWaterCost
+      #   lifeCycleSavingsAncillaryCost - BuildingSync::LifeCycleSavingsAncillaryCost
       #   implementationPeriod - SOAP::SOAPInteger
       #   packageFirstCost - BuildingSync::ScenarioType::ScenarioType::PackageOfMeasures::PackageFirstCost
       #   mVCost - BuildingSync::MVCost
@@ -2444,9 +2520,12 @@ module BuildingSync
         class MeasureIDs < ::Array
 
           # {http://buildingsync.net/schemas/bedes-auc/2019}MeasureID
+          #   measureSavingsAnalysis - BuildingSync::MeasureSavingsAnalysis
           #   xmlattr_IDref - SOAP::SOAPIDREF
           class MeasureID
             AttrIDref = XSD::QName.new(nil, "IDref")
+
+            attr_accessor :measureSavingsAnalysis
 
             def __xmlattr
               @__xmlattr ||= {}
@@ -2460,7 +2539,8 @@ module BuildingSync
               __xmlattr[AttrIDref] = value
             end
 
-            def initialize
+            def initialize(measureSavingsAnalysis = nil)
+              @measureSavingsAnalysis = measureSavingsAnalysis
               @__xmlattr = {}
             end
           end
@@ -2651,6 +2731,11 @@ module BuildingSync
         attr_accessor :annualSavingsAverageGHGEmissions
         attr_accessor :annualSavingsMarginalGHGEmissions
         attr_accessor :annualSavingsGHGEmissionIntensity
+        attr_accessor :lifeCycleSavingsEnergy
+        attr_accessor :lifeCycleSavingsEnergyCost
+        attr_accessor :lifeCycleSavingsWater
+        attr_accessor :lifeCycleSavingsWaterCost
+        attr_accessor :lifeCycleSavingsAncillaryCost
         attr_accessor :implementationPeriod
         attr_accessor :packageFirstCost
         attr_accessor :mVCost
@@ -2685,7 +2770,7 @@ module BuildingSync
           __xmlattr[AttrID] = value
         end
 
-        def initialize(referenceCase = nil, measureIDs = nil, costCategory = nil, simpleImpactAnalysis = nil, calculationMethod = nil, annualSavingsSiteEnergy = nil, annualSavingsSourceEnergy = nil, annualSavingsCost = nil, annualSavingsByFuels = nil, summerPeakElectricityReduction = nil, winterPeakElectricityReduction = nil, annualPeakElectricityReduction = nil, annualDemandSavingsCost = nil, annualWaterSavings = nil, annualWaterCostSavings = nil, annualSavingsAverageGHGEmissions = nil, annualSavingsMarginalGHGEmissions = nil, annualSavingsGHGEmissionIntensity = nil, implementationPeriod = nil, packageFirstCost = nil, mVCost = nil, oMCostAnnualSavings = nil, equipmentDisposalAndSalvageCosts = nil, implementationPeriodCostSavings = nil, percentGuaranteedSavings = nil, projectMarkup = nil, fundingFromIncentives = nil, fundingFromTaxCredits = nil, otherFinancialIncentives = nil, recurringIncentives = nil, nPVofTaxImplications = nil, costEffectivenessScreeningMethod = nil, simplePayback = nil, netPresentValue = nil, internalRateOfReturn = nil, nonquantifiableFactors = nil, assetScore = nil, eNERGYSTARScore = nil, userDefinedFields = nil)
+        def initialize(referenceCase = nil, measureIDs = nil, costCategory = nil, simpleImpactAnalysis = nil, calculationMethod = nil, annualSavingsSiteEnergy = nil, annualSavingsSourceEnergy = nil, annualSavingsCost = nil, annualSavingsByFuels = nil, summerPeakElectricityReduction = nil, winterPeakElectricityReduction = nil, annualPeakElectricityReduction = nil, annualDemandSavingsCost = nil, annualWaterSavings = nil, annualWaterCostSavings = nil, annualSavingsAverageGHGEmissions = nil, annualSavingsMarginalGHGEmissions = nil, annualSavingsGHGEmissionIntensity = nil, lifeCycleSavingsEnergy = nil, lifeCycleSavingsEnergyCost = nil, lifeCycleSavingsWater = nil, lifeCycleSavingsWaterCost = nil, lifeCycleSavingsAncillaryCost = nil, implementationPeriod = nil, packageFirstCost = nil, mVCost = nil, oMCostAnnualSavings = nil, equipmentDisposalAndSalvageCosts = nil, implementationPeriodCostSavings = nil, percentGuaranteedSavings = nil, projectMarkup = nil, fundingFromIncentives = nil, fundingFromTaxCredits = nil, otherFinancialIncentives = nil, recurringIncentives = nil, nPVofTaxImplications = nil, costEffectivenessScreeningMethod = nil, simplePayback = nil, netPresentValue = nil, internalRateOfReturn = nil, nonquantifiableFactors = nil, assetScore = nil, eNERGYSTARScore = nil, userDefinedFields = nil)
           @referenceCase = referenceCase
           @measureIDs = measureIDs
           @costCategory = costCategory
@@ -2704,6 +2789,11 @@ module BuildingSync
           @annualSavingsAverageGHGEmissions = annualSavingsAverageGHGEmissions
           @annualSavingsMarginalGHGEmissions = annualSavingsMarginalGHGEmissions
           @annualSavingsGHGEmissionIntensity = annualSavingsGHGEmissionIntensity
+          @lifeCycleSavingsEnergy = lifeCycleSavingsEnergy
+          @lifeCycleSavingsEnergyCost = lifeCycleSavingsEnergyCost
+          @lifeCycleSavingsWater = lifeCycleSavingsWater
+          @lifeCycleSavingsWaterCost = lifeCycleSavingsWaterCost
+          @lifeCycleSavingsAncillaryCost = lifeCycleSavingsAncillaryCost
           @implementationPeriod = implementationPeriod
           @packageFirstCost = packageFirstCost
           @mVCost = mVCost
@@ -2743,6 +2833,11 @@ module BuildingSync
       #   annualSavingsAverageGHGEmissions - BuildingSync::AnnualSavingsAverageGHGEmissions
       #   annualSavingsMarginalGHGEmissions - BuildingSync::AnnualSavingsMarginalGHGEmissions
       #   annualSavingsGHGEmissionIntensity - BuildingSync::AnnualSavingsGHGEmissionIntensity
+      #   lifeCycleSavingsEnergy - BuildingSync::LifeCycleSavingsEnergy
+      #   lifeCycleSavingsEnergyCost - BuildingSync::LifeCycleSavingsEnergyCost
+      #   lifeCycleSavingsWater - BuildingSync::LifeCycleSavingsWater
+      #   lifeCycleSavingsWaterCost - BuildingSync::LifeCycleSavingsWaterCost
+      #   lifeCycleSavingsAncillaryCost - BuildingSync::LifeCycleSavingsAncillaryCost
       #   simplePayback - BuildingSync::SimplePayback
       #   netPresentValue - BuildingSync::NetPresentValue
       #   internalRateOfReturn - BuildingSync::InternalRateOfReturn
@@ -2761,13 +2856,18 @@ module BuildingSync
         attr_accessor :annualSavingsAverageGHGEmissions
         attr_accessor :annualSavingsMarginalGHGEmissions
         attr_accessor :annualSavingsGHGEmissionIntensity
+        attr_accessor :lifeCycleSavingsEnergy
+        attr_accessor :lifeCycleSavingsEnergyCost
+        attr_accessor :lifeCycleSavingsWater
+        attr_accessor :lifeCycleSavingsWaterCost
+        attr_accessor :lifeCycleSavingsAncillaryCost
         attr_accessor :simplePayback
         attr_accessor :netPresentValue
         attr_accessor :internalRateOfReturn
         attr_accessor :assetScore
         attr_accessor :eNERGYSTARScore
 
-        def initialize(referenceCase = nil, annualSavingsSiteEnergy = nil, annualSavingsSourceEnergy = nil, annualSavingsCost = nil, summerPeakElectricityReduction = nil, winterPeakElectricityReduction = nil, annualPeakElectricityReduction = nil, annualWaterSavings = nil, annualWaterCostSavings = nil, annualSavingsAverageGHGEmissions = nil, annualSavingsMarginalGHGEmissions = nil, annualSavingsGHGEmissionIntensity = nil, simplePayback = nil, netPresentValue = nil, internalRateOfReturn = nil, assetScore = nil, eNERGYSTARScore = nil)
+        def initialize(referenceCase = nil, annualSavingsSiteEnergy = nil, annualSavingsSourceEnergy = nil, annualSavingsCost = nil, summerPeakElectricityReduction = nil, winterPeakElectricityReduction = nil, annualPeakElectricityReduction = nil, annualWaterSavings = nil, annualWaterCostSavings = nil, annualSavingsAverageGHGEmissions = nil, annualSavingsMarginalGHGEmissions = nil, annualSavingsGHGEmissionIntensity = nil, lifeCycleSavingsEnergy = nil, lifeCycleSavingsEnergyCost = nil, lifeCycleSavingsWater = nil, lifeCycleSavingsWaterCost = nil, lifeCycleSavingsAncillaryCost = nil, simplePayback = nil, netPresentValue = nil, internalRateOfReturn = nil, assetScore = nil, eNERGYSTARScore = nil)
           @referenceCase = referenceCase
           @annualSavingsSiteEnergy = annualSavingsSiteEnergy
           @annualSavingsSourceEnergy = annualSavingsSourceEnergy
@@ -2780,6 +2880,11 @@ module BuildingSync
           @annualSavingsAverageGHGEmissions = annualSavingsAverageGHGEmissions
           @annualSavingsMarginalGHGEmissions = annualSavingsMarginalGHGEmissions
           @annualSavingsGHGEmissionIntensity = annualSavingsGHGEmissionIntensity
+          @lifeCycleSavingsEnergy = lifeCycleSavingsEnergy
+          @lifeCycleSavingsEnergyCost = lifeCycleSavingsEnergyCost
+          @lifeCycleSavingsWater = lifeCycleSavingsWater
+          @lifeCycleSavingsWaterCost = lifeCycleSavingsWaterCost
+          @lifeCycleSavingsAncillaryCost = lifeCycleSavingsAncillaryCost
           @simplePayback = simplePayback
           @netPresentValue = netPresentValue
           @internalRateOfReturn = internalRateOfReturn
@@ -4973,7 +5078,7 @@ module BuildingSync
   #   measureScaleOfApplication - SOAP::SOAPString
   #   customMeasureName - SOAP::SOAPString
   #   longDescription - SOAP::SOAPString
-  #   measureSavingsAnalysis - BuildingSync::MeasureType::MeasureSavingsAnalysis
+  #   measureSavingsAnalysis - BuildingSync::MeasureSavingsAnalysis
   #   mVCost - BuildingSync::MVCost
   #   mVOption - SOAP::SOAPString
   #   usefulLife - BuildingSync::MeasureType::UsefulLife
@@ -5303,6 +5408,11 @@ module BuildingSync
       #   advancedMeteringSystems - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::AdvancedMeteringSystems
       #   plugLoadReductions - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::PlugLoadReductions
       #   dataCenterImprovements - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::DataCenterImprovements
+      #   alternativeWaterSources - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::AlternativeWaterSources
+      #   kitchenImprovements - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::KitchenImprovements
+      #   laboratoryAndMedicalEquipments - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::LaboratoryAndMedicalEquipments
+      #   irrigationSystemsAndLandscapingImprovements - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::IrrigationSystemsAndLandscapingImprovements
+      #   washingEquipmentsAndTechiques - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::WashingEquipmentsAndTechiques
       #   futureOtherECMs - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::FutureOtherECMs
       #   healthAndSafety - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::HealthAndSafety
       #   uncategorized - BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::Uncategorized
@@ -5413,6 +5523,31 @@ module BuildingSync
         class DataCenterImprovements < ::Array
         end
 
+        # inner class for member: AlternativeWaterSources
+        # {http://buildingsync.net/schemas/bedes-auc/2019}AlternativeWaterSources
+        class AlternativeWaterSources < ::Array
+        end
+
+        # inner class for member: KitchenImprovements
+        # {http://buildingsync.net/schemas/bedes-auc/2019}KitchenImprovements
+        class KitchenImprovements < ::Array
+        end
+
+        # inner class for member: LaboratoryAndMedicalEquipments
+        # {http://buildingsync.net/schemas/bedes-auc/2019}LaboratoryAndMedicalEquipments
+        class LaboratoryAndMedicalEquipments < ::Array
+        end
+
+        # inner class for member: IrrigationSystemsAndLandscapingImprovements
+        # {http://buildingsync.net/schemas/bedes-auc/2019}IrrigationSystemsAndLandscapingImprovements
+        class IrrigationSystemsAndLandscapingImprovements < ::Array
+        end
+
+        # inner class for member: WashingEquipmentsAndTechiques
+        # {http://buildingsync.net/schemas/bedes-auc/2019}WashingEquipmentsAndTechiques
+        class WashingEquipmentsAndTechiques < ::Array
+        end
+
         # inner class for member: FutureOtherECMs
         # {http://buildingsync.net/schemas/bedes-auc/2019}FutureOtherECMs
         class FutureOtherECMs < ::Array
@@ -5449,11 +5584,16 @@ module BuildingSync
         attr_accessor :advancedMeteringSystems
         attr_accessor :plugLoadReductions
         attr_accessor :dataCenterImprovements
+        attr_accessor :alternativeWaterSources
+        attr_accessor :kitchenImprovements
+        attr_accessor :laboratoryAndMedicalEquipments
+        attr_accessor :irrigationSystemsAndLandscapingImprovements
+        attr_accessor :washingEquipmentsAndTechiques
         attr_accessor :futureOtherECMs
         attr_accessor :healthAndSafety
         attr_accessor :uncategorized
 
-        def initialize(boilerPlantImprovements = nil, chillerPlantImprovements = nil, buildingAutomationSystems = nil, otherHVAC = nil, lightingImprovements = nil, buildingEnvelopeModifications = nil, chilledWaterHotWaterAndSteamDistributionSystems = nil, conveyanceSystems = nil, otherElectricMotorsAndDrives = nil, refrigeration = nil, distributedGeneration = nil, renewableEnergySystems = nil, energyDistributionSystems = nil, serviceHotWaterSystems = nil, waterAndSewerConservationSystems = nil, electricalPeakShavingLoadShifting = nil, energyCostReductionThroughRateAdjustments = nil, energyRelatedProcessImprovements = nil, advancedMeteringSystems = nil, plugLoadReductions = nil, dataCenterImprovements = nil, futureOtherECMs = nil, healthAndSafety = nil, uncategorized = nil)
+        def initialize(boilerPlantImprovements = nil, chillerPlantImprovements = nil, buildingAutomationSystems = nil, otherHVAC = nil, lightingImprovements = nil, buildingEnvelopeModifications = nil, chilledWaterHotWaterAndSteamDistributionSystems = nil, conveyanceSystems = nil, otherElectricMotorsAndDrives = nil, refrigeration = nil, distributedGeneration = nil, renewableEnergySystems = nil, energyDistributionSystems = nil, serviceHotWaterSystems = nil, waterAndSewerConservationSystems = nil, electricalPeakShavingLoadShifting = nil, energyCostReductionThroughRateAdjustments = nil, energyRelatedProcessImprovements = nil, advancedMeteringSystems = nil, plugLoadReductions = nil, dataCenterImprovements = nil, alternativeWaterSources = nil, kitchenImprovements = nil, laboratoryAndMedicalEquipments = nil, irrigationSystemsAndLandscapingImprovements = nil, washingEquipmentsAndTechiques = nil, futureOtherECMs = nil, healthAndSafety = nil, uncategorized = nil)
           @boilerPlantImprovements = boilerPlantImprovements
           @chillerPlantImprovements = chillerPlantImprovements
           @buildingAutomationSystems = buildingAutomationSystems
@@ -5475,136 +5615,15 @@ module BuildingSync
           @advancedMeteringSystems = advancedMeteringSystems
           @plugLoadReductions = plugLoadReductions
           @dataCenterImprovements = dataCenterImprovements
+          @alternativeWaterSources = alternativeWaterSources
+          @kitchenImprovements = kitchenImprovements
+          @laboratoryAndMedicalEquipments = laboratoryAndMedicalEquipments
+          @irrigationSystemsAndLandscapingImprovements = irrigationSystemsAndLandscapingImprovements
+          @washingEquipmentsAndTechiques = washingEquipmentsAndTechiques
           @futureOtherECMs = futureOtherECMs
           @healthAndSafety = healthAndSafety
           @uncategorized = uncategorized
         end
-      end
-    end
-
-    # inner class for member: MeasureSavingsAnalysis
-    # {http://buildingsync.net/schemas/bedes-auc/2019}MeasureSavingsAnalysis
-    #   measureRank - BuildingSync::MeasureType::MeasureSavingsAnalysis::MeasureRank
-    #   referenceCase - BuildingSync::ReferenceCase
-    #   calculationMethod - BuildingSync::CalculationMethodType
-    #   annualSavingsSiteEnergy - BuildingSync::AnnualSavingsSiteEnergy
-    #   annualSavingsSourceEnergy - BuildingSync::AnnualSavingsSourceEnergy
-    #   annualSavingsCost - BuildingSync::AnnualSavingsCost
-    #   annualSavingsByFuels - BuildingSync::AnnualSavingsByFuels
-    #   summerPeakElectricityReduction - BuildingSync::SummerPeakElectricityReduction
-    #   winterPeakElectricityReduction - BuildingSync::WinterPeakElectricityReduction
-    #   annualPeakElectricityReduction - BuildingSync::AnnualPeakElectricityReduction
-    #   annualDemandSavingsCost - BuildingSync::AnnualDemandSavingsCost
-    #   annualWaterSavings - BuildingSync::AnnualWaterSavings
-    #   annualWaterCostSavings - BuildingSync::AnnualWaterCostSavings
-    #   oMCostAnnualSavings - BuildingSync::OMCostAnnualSavings
-    #   otherCostAnnualSavings - BuildingSync::MeasureType::MeasureSavingsAnalysis::OtherCostAnnualSavings
-    #   equipmentDisposalAndSalvageCosts - BuildingSync::EquipmentDisposalAndSalvageCosts
-    #   fundingFromIncentives - BuildingSync::FundingFromIncentives
-    #   fundingFromTaxCredits - BuildingSync::FundingFromTaxCredits
-    #   nPVofTaxImplications - BuildingSync::NPVofTaxImplications
-    #   costEffectivenessScreeningMethod - SOAP::SOAPString
-    #   simplePayback - BuildingSync::SimplePayback
-    #   netPresentValue - BuildingSync::NetPresentValue
-    #   internalRateOfReturn - BuildingSync::InternalRateOfReturn
-    class MeasureSavingsAnalysis
-
-      # inner class for member: MeasureRank
-      # {http://buildingsync.net/schemas/bedes-auc/2019}MeasureRank
-      #   xmlattr_Source - SOAP::SOAPString
-      class MeasureRank < ::String
-        AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
-
-        def __xmlattr
-          @__xmlattr ||= {}
-        end
-
-        def xmlattr_Source
-          __xmlattr[AttrSource]
-        end
-
-        def xmlattr_Source=(value)
-          __xmlattr[AttrSource] = value
-        end
-
-        def initialize(*arg)
-          super
-          @__xmlattr = {}
-        end
-      end
-
-      # inner class for member: OtherCostAnnualSavings
-      # {http://buildingsync.net/schemas/bedes-auc/2019}OtherCostAnnualSavings
-      #   xmlattr_Source - SOAP::SOAPString
-      class OtherCostAnnualSavings < ::String
-        AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
-
-        def __xmlattr
-          @__xmlattr ||= {}
-        end
-
-        def xmlattr_Source
-          __xmlattr[AttrSource]
-        end
-
-        def xmlattr_Source=(value)
-          __xmlattr[AttrSource] = value
-        end
-
-        def initialize(*arg)
-          super
-          @__xmlattr = {}
-        end
-      end
-
-      attr_accessor :measureRank
-      attr_accessor :referenceCase
-      attr_accessor :calculationMethod
-      attr_accessor :annualSavingsSiteEnergy
-      attr_accessor :annualSavingsSourceEnergy
-      attr_accessor :annualSavingsCost
-      attr_accessor :annualSavingsByFuels
-      attr_accessor :summerPeakElectricityReduction
-      attr_accessor :winterPeakElectricityReduction
-      attr_accessor :annualPeakElectricityReduction
-      attr_accessor :annualDemandSavingsCost
-      attr_accessor :annualWaterSavings
-      attr_accessor :annualWaterCostSavings
-      attr_accessor :oMCostAnnualSavings
-      attr_accessor :otherCostAnnualSavings
-      attr_accessor :equipmentDisposalAndSalvageCosts
-      attr_accessor :fundingFromIncentives
-      attr_accessor :fundingFromTaxCredits
-      attr_accessor :nPVofTaxImplications
-      attr_accessor :costEffectivenessScreeningMethod
-      attr_accessor :simplePayback
-      attr_accessor :netPresentValue
-      attr_accessor :internalRateOfReturn
-
-      def initialize(measureRank = nil, referenceCase = nil, calculationMethod = nil, annualSavingsSiteEnergy = nil, annualSavingsSourceEnergy = nil, annualSavingsCost = nil, annualSavingsByFuels = nil, summerPeakElectricityReduction = nil, winterPeakElectricityReduction = nil, annualPeakElectricityReduction = nil, annualDemandSavingsCost = nil, annualWaterSavings = nil, annualWaterCostSavings = nil, oMCostAnnualSavings = nil, otherCostAnnualSavings = nil, equipmentDisposalAndSalvageCosts = nil, fundingFromIncentives = nil, fundingFromTaxCredits = nil, nPVofTaxImplications = nil, costEffectivenessScreeningMethod = nil, simplePayback = nil, netPresentValue = nil, internalRateOfReturn = nil)
-        @measureRank = measureRank
-        @referenceCase = referenceCase
-        @calculationMethod = calculationMethod
-        @annualSavingsSiteEnergy = annualSavingsSiteEnergy
-        @annualSavingsSourceEnergy = annualSavingsSourceEnergy
-        @annualSavingsCost = annualSavingsCost
-        @annualSavingsByFuels = annualSavingsByFuels
-        @summerPeakElectricityReduction = summerPeakElectricityReduction
-        @winterPeakElectricityReduction = winterPeakElectricityReduction
-        @annualPeakElectricityReduction = annualPeakElectricityReduction
-        @annualDemandSavingsCost = annualDemandSavingsCost
-        @annualWaterSavings = annualWaterSavings
-        @annualWaterCostSavings = annualWaterCostSavings
-        @oMCostAnnualSavings = oMCostAnnualSavings
-        @otherCostAnnualSavings = otherCostAnnualSavings
-        @equipmentDisposalAndSalvageCosts = equipmentDisposalAndSalvageCosts
-        @fundingFromIncentives = fundingFromIncentives
-        @fundingFromTaxCredits = fundingFromTaxCredits
-        @nPVofTaxImplications = nPVofTaxImplications
-        @costEffectivenessScreeningMethod = costEffectivenessScreeningMethod
-        @simplePayback = simplePayback
-        @netPresentValue = netPresentValue
-        @internalRateOfReturn = internalRateOfReturn
       end
     end
 
@@ -5820,9 +5839,11 @@ module BuildingSync
   #   auditFilingStatus - SOAP::SOAPString
   #   earlyCompliance - SOAP::SOAPBoolean
   #   aSHRAEAuditLevel - SOAP::SOAPString
+  #   facilityEvaluationAuditDefinition - BuildingSync::ReportType::FacilityEvaluationAuditDefinition
   #   retrocommissioningAudit - SOAP::SOAPBoolean
   #   auditCost - BuildingSync::ReportType::AuditCost
   #   discountFactor - BuildingSync::ReportType::DiscountFactor
+  #   discountRate - BuildingSync::ReportType::DiscountRate
   #   analysisPeriod - BuildingSync::ReportType::AnalysisPeriod
   #   gasPriceEscalationRate - BuildingSync::ReportType::GasPriceEscalationRate
   #   electricityPriceEscalationRate - BuildingSync::ReportType::ElectricityPriceEscalationRate
@@ -5834,6 +5855,7 @@ module BuildingSync
   #   utilities - BuildingSync::ReportType::Utilities
   #   auditorContactID - BuildingSync::ReportType::AuditorContactID
   #   linkedPremisesOrSystem - BuildingSync::LinkedPremisesOrSystem
+  #   linkedAuditCycles - BuildingSync::LinkedAuditCycles
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   xmlattr_ID - SOAP::SOAPID
   class ReportType
@@ -5865,6 +5887,26 @@ module BuildingSync
       end
     end
 
+    # inner class for member: FacilityEvaluationAuditDefinition
+    # {http://buildingsync.net/schemas/bedes-auc/2019}FacilityEvaluationAuditDefinition
+    #   basicOnsiteAudit - SOAP::SOAPString
+    #   detailedOnsiteAudit - SOAP::SOAPString
+    #   basicRemoteAudit - SOAP::SOAPString
+    #   detailedRemoteAudit - SOAP::SOAPString
+    class FacilityEvaluationAuditDefinition
+      attr_accessor :basicOnsiteAudit
+      attr_accessor :detailedOnsiteAudit
+      attr_accessor :basicRemoteAudit
+      attr_accessor :detailedRemoteAudit
+
+      def initialize(basicOnsiteAudit = nil, detailedOnsiteAudit = nil, basicRemoteAudit = nil, detailedRemoteAudit = nil)
+        @basicOnsiteAudit = basicOnsiteAudit
+        @detailedOnsiteAudit = detailedOnsiteAudit
+        @basicRemoteAudit = basicRemoteAudit
+        @detailedRemoteAudit = detailedRemoteAudit
+      end
+    end
+
     # inner class for member: AuditCost
     # {http://buildingsync.net/schemas/bedes-auc/2019}AuditCost
     #   xmlattr_Source - SOAP::SOAPString
@@ -5893,6 +5935,30 @@ module BuildingSync
     # {http://buildingsync.net/schemas/bedes-auc/2019}DiscountFactor
     #   xmlattr_Source - SOAP::SOAPString
     class DiscountFactor < ::String
+      AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
+
+      def __xmlattr
+        @__xmlattr ||= {}
+      end
+
+      def xmlattr_Source
+        __xmlattr[AttrSource]
+      end
+
+      def xmlattr_Source=(value)
+        __xmlattr[AttrSource] = value
+      end
+
+      def initialize(*arg)
+        super
+        @__xmlattr = {}
+      end
+    end
+
+    # inner class for member: DiscountRate
+    # {http://buildingsync.net/schemas/bedes-auc/2019}DiscountRate
+    #   xmlattr_Source - SOAP::SOAPString
+    class DiscountRate < ::String
       AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
 
       def __xmlattr
@@ -6196,9 +6262,11 @@ module BuildingSync
     attr_accessor :auditFilingStatus
     attr_accessor :earlyCompliance
     attr_accessor :aSHRAEAuditLevel
+    attr_accessor :facilityEvaluationAuditDefinition
     attr_accessor :retrocommissioningAudit
     attr_accessor :auditCost
     attr_accessor :discountFactor
+    attr_accessor :discountRate
     attr_accessor :analysisPeriod
     attr_accessor :gasPriceEscalationRate
     attr_accessor :electricityPriceEscalationRate
@@ -6210,6 +6278,7 @@ module BuildingSync
     attr_accessor :utilities
     attr_accessor :auditorContactID
     attr_accessor :linkedPremisesOrSystem
+    attr_accessor :linkedAuditCycles
     attr_accessor :userDefinedFields
 
     def __xmlattr
@@ -6224,15 +6293,17 @@ module BuildingSync
       __xmlattr[AttrID] = value
     end
 
-    def initialize(scenarios = nil, auditDates = nil, auditFilingStatus = nil, earlyCompliance = nil, aSHRAEAuditLevel = nil, retrocommissioningAudit = nil, auditCost = nil, discountFactor = nil, analysisPeriod = nil, gasPriceEscalationRate = nil, electricityPriceEscalationRate = nil, waterPriceEscalationRate = nil, otherEscalationRates = nil, inflationRate = nil, qualifications = nil, auditExemption = nil, utilities = nil, auditorContactID = nil, linkedPremisesOrSystem = nil, userDefinedFields = nil)
+    def initialize(scenarios = nil, auditDates = nil, auditFilingStatus = nil, earlyCompliance = nil, aSHRAEAuditLevel = nil, facilityEvaluationAuditDefinition = nil, retrocommissioningAudit = nil, auditCost = nil, discountFactor = nil, discountRate = nil, analysisPeriod = nil, gasPriceEscalationRate = nil, electricityPriceEscalationRate = nil, waterPriceEscalationRate = nil, otherEscalationRates = nil, inflationRate = nil, qualifications = nil, auditExemption = nil, utilities = nil, auditorContactID = nil, linkedPremisesOrSystem = nil, linkedAuditCycles = nil, userDefinedFields = nil)
       @scenarios = scenarios
       @auditDates = auditDates
       @auditFilingStatus = auditFilingStatus
       @earlyCompliance = earlyCompliance
       @aSHRAEAuditLevel = aSHRAEAuditLevel
+      @facilityEvaluationAuditDefinition = facilityEvaluationAuditDefinition
       @retrocommissioningAudit = retrocommissioningAudit
       @auditCost = auditCost
       @discountFactor = discountFactor
+      @discountRate = discountRate
       @analysisPeriod = analysisPeriod
       @gasPriceEscalationRate = gasPriceEscalationRate
       @electricityPriceEscalationRate = electricityPriceEscalationRate
@@ -6244,6 +6315,7 @@ module BuildingSync
       @utilities = utilities
       @auditorContactID = auditorContactID
       @linkedPremisesOrSystem = linkedPremisesOrSystem
+      @linkedAuditCycles = linkedAuditCycles
       @userDefinedFields = userDefinedFields
       @__xmlattr = {}
     end
@@ -6336,6 +6408,7 @@ module BuildingSync
         #   modelNumber - SOAP::SOAPString
         #   userDefinedFields - BuildingSync::UserDefinedFields
         #   quantity - BuildingSync::Quantity
+        #   equipmentID - SOAP::SOAPString
         #   xmlattr_ID - SOAP::SOAPID
         #   xmlattr_Status - SOAP::SOAPString
         class HeatingSource
@@ -6593,6 +6666,7 @@ module BuildingSync
           attr_accessor :modelNumber
           attr_accessor :userDefinedFields
           attr_accessor :quantity
+          attr_accessor :equipmentID
 
           def __xmlattr
             @__xmlattr ||= {}
@@ -6614,7 +6688,7 @@ module BuildingSync
             __xmlattr[AttrStatus] = value
           end
 
-          def initialize(heatingSourceType = nil, heatingMedium = nil, annualHeatingEfficiencyValue = nil, annualHeatingEfficiencyUnits = nil, inputCapacity = nil, outputCapacity = nil, capacity = nil, capacityUnits = nil, heatingStaging = nil, numberOfHeatingStages = nil, heatingStageCapacityFraction = nil, primaryFuel = nil, heatingSourceCondition = nil, controls = nil, location = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, userDefinedFields = nil, quantity = nil)
+          def initialize(heatingSourceType = nil, heatingMedium = nil, annualHeatingEfficiencyValue = nil, annualHeatingEfficiencyUnits = nil, inputCapacity = nil, outputCapacity = nil, capacity = nil, capacityUnits = nil, heatingStaging = nil, numberOfHeatingStages = nil, heatingStageCapacityFraction = nil, primaryFuel = nil, heatingSourceCondition = nil, controls = nil, location = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
             @heatingSourceType = heatingSourceType
             @heatingMedium = heatingMedium
             @annualHeatingEfficiencyValue = annualHeatingEfficiencyValue
@@ -6636,6 +6710,7 @@ module BuildingSync
             @modelNumber = modelNumber
             @userDefinedFields = userDefinedFields
             @quantity = quantity
+            @equipmentID = equipmentID
             @__xmlattr = {}
           end
         end
@@ -6667,6 +6742,7 @@ module BuildingSync
         #   modelNumber - SOAP::SOAPString
         #   userDefinedFields - BuildingSync::UserDefinedFields
         #   quantity - BuildingSync::Quantity
+        #   equipmentID - SOAP::SOAPString
         #   xmlattr_ID - SOAP::SOAPID
         #   xmlattr_Status - SOAP::SOAPString
         class CoolingSource
@@ -6789,6 +6865,7 @@ module BuildingSync
           attr_accessor :modelNumber
           attr_accessor :userDefinedFields
           attr_accessor :quantity
+          attr_accessor :equipmentID
 
           def __xmlattr
             @__xmlattr ||= {}
@@ -6810,7 +6887,7 @@ module BuildingSync
             __xmlattr[AttrStatus] = value
           end
 
-          def initialize(coolingSourceType = nil, coolingMedium = nil, annualCoolingEfficiencyValue = nil, annualCoolingEfficiencyUnits = nil, capacity = nil, capacityUnits = nil, numberOfDiscreteCoolingStages = nil, coolingStageCapacity = nil, minimumPartLoadRatio = nil, ratedCoolingSensibleHeatRatio = nil, thirdPartyCertification = nil, primaryFuel = nil, coolingSourceCondition = nil, controls = nil, location = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, userDefinedFields = nil, quantity = nil)
+          def initialize(coolingSourceType = nil, coolingMedium = nil, annualCoolingEfficiencyValue = nil, annualCoolingEfficiencyUnits = nil, capacity = nil, capacityUnits = nil, numberOfDiscreteCoolingStages = nil, coolingStageCapacity = nil, minimumPartLoadRatio = nil, ratedCoolingSensibleHeatRatio = nil, thirdPartyCertification = nil, primaryFuel = nil, coolingSourceCondition = nil, controls = nil, location = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
             @coolingSourceType = coolingSourceType
             @coolingMedium = coolingMedium
             @annualCoolingEfficiencyValue = annualCoolingEfficiencyValue
@@ -6832,6 +6909,7 @@ module BuildingSync
             @modelNumber = modelNumber
             @userDefinedFields = userDefinedFields
             @quantity = quantity
+            @equipmentID = equipmentID
             @__xmlattr = {}
           end
         end
@@ -6856,6 +6934,7 @@ module BuildingSync
         #   thirdPartyCertification - SOAP::SOAPString
         #   quantity - BuildingSync::Quantity
         #   deliveryCondition - BuildingSync::EquipmentCondition
+        #   equipmentID - SOAP::SOAPString
         #   xmlattr_ID - SOAP::SOAPID
         #   xmlattr_Status - SOAP::SOAPString
         class Delivery
@@ -7027,6 +7106,7 @@ module BuildingSync
           attr_accessor :thirdPartyCertification
           attr_accessor :quantity
           attr_accessor :deliveryCondition
+          attr_accessor :equipmentID
 
           def __xmlattr
             @__xmlattr ||= {}
@@ -7048,7 +7128,7 @@ module BuildingSync
             __xmlattr[AttrStatus] = value
           end
 
-          def initialize(deliveryType = nil, heatingSourceID = nil, coolingSourceID = nil, capacity = nil, capacityUnits = nil, primaryFuel = nil, controls = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, thirdPartyCertification = nil, quantity = nil, deliveryCondition = nil)
+          def initialize(deliveryType = nil, heatingSourceID = nil, coolingSourceID = nil, capacity = nil, capacityUnits = nil, primaryFuel = nil, controls = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, thirdPartyCertification = nil, quantity = nil, deliveryCondition = nil, equipmentID = nil)
             @deliveryType = deliveryType
             @heatingSourceID = heatingSourceID
             @coolingSourceID = coolingSourceID
@@ -7063,6 +7143,7 @@ module BuildingSync
             @thirdPartyCertification = thirdPartyCertification
             @quantity = quantity
             @deliveryCondition = deliveryCondition
+            @equipmentID = equipmentID
             @__xmlattr = {}
           end
         end
@@ -8003,6 +8084,7 @@ module BuildingSync
   #   otherCombination - BuildingSync::OtherCombinationType
   #   noCooling - BuildingSync::NoCoolingType
   #   unknown - BuildingSync::UnknownType
+  #   condenserType - SOAP::SOAPString
   #   coolingPlantCondition - BuildingSync::EquipmentCondition
   #   location - SOAP::SOAPString
   #   yearInstalled - SOAP::SOAPGYear
@@ -8132,6 +8214,7 @@ module BuildingSync
     attr_accessor :otherCombination
     attr_accessor :noCooling
     attr_accessor :unknown
+    attr_accessor :condenserType
     attr_accessor :coolingPlantCondition
     attr_accessor :location
     attr_accessor :yearInstalled
@@ -8160,12 +8243,13 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(chiller = nil, districtChilledWater = nil, otherCombination = nil, noCooling = nil, unknown = nil, coolingPlantCondition = nil, location = nil, yearInstalled = nil, primaryFuel = nil, buildingAutomationSystem = nil, controlSystemTypes = nil, userDefinedFields = nil)
+    def initialize(chiller = nil, districtChilledWater = nil, otherCombination = nil, noCooling = nil, unknown = nil, condenserType = nil, coolingPlantCondition = nil, location = nil, yearInstalled = nil, primaryFuel = nil, buildingAutomationSystem = nil, controlSystemTypes = nil, userDefinedFields = nil)
       @chiller = chiller
       @districtChilledWater = districtChilledWater
       @otherCombination = otherCombination
       @noCooling = noCooling
       @unknown = unknown
+      @condenserType = condenserType
       @coolingPlantCondition = coolingPlantCondition
       @location = location
       @yearInstalled = yearInstalled
@@ -8651,6 +8735,7 @@ module BuildingSync
   #   linkedDeliveryIDs - BuildingSync::OtherHVACSystemType::LinkedDeliveryIDs
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class OtherHVACSystemType
@@ -8994,6 +9079,7 @@ module BuildingSync
     attr_accessor :linkedDeliveryIDs
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -9015,7 +9101,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(otherHVACType = nil, location = nil, primaryFuel = nil, otherHVACSystemCondition = nil, controls = nil, manufacturer = nil, modelNumber = nil, yearOfManufacture = nil, yearInstalled = nil, linkedPremises = nil, integration = nil, linkedDeliveryIDs = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(otherHVACType = nil, location = nil, primaryFuel = nil, otherHVACSystemCondition = nil, controls = nil, manufacturer = nil, modelNumber = nil, yearOfManufacture = nil, yearInstalled = nil, linkedPremises = nil, integration = nil, linkedDeliveryIDs = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @otherHVACType = otherHVACType
       @location = location
       @primaryFuel = primaryFuel
@@ -9030,6 +9116,7 @@ module BuildingSync
       @linkedDeliveryIDs = linkedDeliveryIDs
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -9067,6 +9154,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class LightingSystemType
@@ -9528,6 +9616,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -9549,7 +9638,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(lampType = nil, ballastType = nil, inputVoltage = nil, installationType = nil, lightingDirection = nil, dimmingCapability = nil, percentPremisesServed = nil, installedPower = nil, lampPower = nil, numberOfLampsPerLuminaire = nil, numberOfLampsPerBallast = nil, numberOfBallastsPerLuminaire = nil, numberOfLuminaires = nil, outsideLighting = nil, reflectorType = nil, lightingEfficacy = nil, workPlaneHeight = nil, luminaireHeight = nil, fixtureSpacing = nil, ratedLampLife = nil, controls = nil, lightingAutomationSystem = nil, thirdPartyCertification = nil, primaryFuel = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(lampType = nil, ballastType = nil, inputVoltage = nil, installationType = nil, lightingDirection = nil, dimmingCapability = nil, percentPremisesServed = nil, installedPower = nil, lampPower = nil, numberOfLampsPerLuminaire = nil, numberOfLampsPerBallast = nil, numberOfBallastsPerLuminaire = nil, numberOfLuminaires = nil, outsideLighting = nil, reflectorType = nil, lightingEfficacy = nil, workPlaneHeight = nil, luminaireHeight = nil, fixtureSpacing = nil, ratedLampLife = nil, controls = nil, lightingAutomationSystem = nil, thirdPartyCertification = nil, primaryFuel = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @lampType = lampType
       @ballastType = ballastType
       @inputVoltage = inputVoltage
@@ -9582,6 +9671,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -9610,6 +9700,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class DomesticHotWaterSystemType
@@ -9749,6 +9840,7 @@ module BuildingSync
               #   manufacturer - SOAP::SOAPString
               #   modelNumber - SOAP::SOAPString
               #   location - SOAP::SOAPString
+              #   equipmentID - SOAP::SOAPString
               class Solar
 
                 # inner class for member: SolarThermalSystemCollectorArea
@@ -9866,8 +9958,9 @@ module BuildingSync
                 attr_accessor :manufacturer
                 attr_accessor :modelNumber
                 attr_accessor :location
+                attr_accessor :equipmentID
 
-                def initialize(solarThermalSystemType = nil, solarThermalSystemCollectorArea = nil, solarThermalSystemCollectorLoopType = nil, solarThermalSystemCollectorType = nil, solarThermalSystemCollectorAzimuth = nil, solarThermalSystemCollectorTilt = nil, solarThermalSystemStorageVolume = nil, controls = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil)
+                def initialize(solarThermalSystemType = nil, solarThermalSystemCollectorArea = nil, solarThermalSystemCollectorLoopType = nil, solarThermalSystemCollectorType = nil, solarThermalSystemCollectorAzimuth = nil, solarThermalSystemCollectorTilt = nil, solarThermalSystemStorageVolume = nil, controls = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, equipmentID = nil)
                   @solarThermalSystemType = solarThermalSystemType
                   @solarThermalSystemCollectorArea = solarThermalSystemCollectorArea
                   @solarThermalSystemCollectorLoopType = solarThermalSystemCollectorLoopType
@@ -9882,6 +9975,7 @@ module BuildingSync
                   @manufacturer = manufacturer
                   @modelNumber = modelNumber
                   @location = location
+                  @equipmentID = equipmentID
                 end
               end
 
@@ -10421,6 +10515,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -10442,7 +10537,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(domesticHotWaterType = nil, domesticHotWaterSystemNotes = nil, recirculation = nil, hotWaterDistributionType = nil, waterHeaterEfficiencyType = nil, waterHeaterEfficiency = nil, dailyHotWaterDraw = nil, hotWaterSetpointTemperature = nil, parasiticFuelConsumptionRate = nil, capacity = nil, capacityUnits = nil, thirdPartyCertification = nil, controls = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, domesticHotWaterSystemCondition = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(domesticHotWaterType = nil, domesticHotWaterSystemNotes = nil, recirculation = nil, hotWaterDistributionType = nil, waterHeaterEfficiencyType = nil, waterHeaterEfficiency = nil, dailyHotWaterDraw = nil, hotWaterSetpointTemperature = nil, parasiticFuelConsumptionRate = nil, capacity = nil, capacityUnits = nil, thirdPartyCertification = nil, controls = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, domesticHotWaterSystemCondition = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @domesticHotWaterType = domesticHotWaterType
       @domesticHotWaterSystemNotes = domesticHotWaterSystemNotes
       @recirculation = recirculation
@@ -10466,6 +10561,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -10487,6 +10583,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class CookingSystemType
@@ -10581,6 +10678,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -10602,7 +10700,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(typeOfCookingEquipment = nil, numberOfMeals = nil, cookingEnergyPerMeal = nil, dailyWaterUse = nil, capacity = nil, capacityUnits = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(typeOfCookingEquipment = nil, numberOfMeals = nil, cookingEnergyPerMeal = nil, dailyWaterUse = nil, capacity = nil, capacityUnits = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @typeOfCookingEquipment = typeOfCookingEquipment
       @numberOfMeals = numberOfMeals
       @cookingEnergyPerMeal = cookingEnergyPerMeal
@@ -10619,6 +10717,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -10635,6 +10734,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class RefrigerationSystemType
@@ -10921,6 +11021,7 @@ module BuildingSync
         #   antiSweatHeaterControls - SOAP::SOAPBoolean
         #   manufacturer - SOAP::SOAPString
         #   modelNumber - SOAP::SOAPString
+        #   equipmentID - SOAP::SOAPString
         class AntiSweatHeaters
 
           # inner class for member: AntiSweatHeaterPower
@@ -10951,12 +11052,14 @@ module BuildingSync
           attr_accessor :antiSweatHeaterControls
           attr_accessor :manufacturer
           attr_accessor :modelNumber
+          attr_accessor :equipmentID
 
-          def initialize(antiSweatHeaterPower = nil, antiSweatHeaterControls = nil, manufacturer = nil, modelNumber = nil)
+          def initialize(antiSweatHeaterPower = nil, antiSweatHeaterControls = nil, manufacturer = nil, modelNumber = nil, equipmentID = nil)
             @antiSweatHeaterPower = antiSweatHeaterPower
             @antiSweatHeaterControls = antiSweatHeaterControls
             @manufacturer = manufacturer
             @modelNumber = modelNumber
+            @equipmentID = equipmentID
           end
         end
 
@@ -11027,6 +11130,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -11048,7 +11152,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(refrigerationSystemCategory = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(refrigerationSystemCategory = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @refrigerationSystemCategory = refrigerationSystemCategory
       @thirdPartyCertification = thirdPartyCertification
       @yearInstalled = yearInstalled
@@ -11060,6 +11164,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -11082,6 +11187,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class DishwasherSystemType
@@ -11182,6 +11288,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -11203,7 +11310,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(dishwasherMachineType = nil, dishwasherConfiguration = nil, dishwasherClassification = nil, dishwasherLoadsPerWeek = nil, dishwasherEnergyFactor = nil, dishwasherHotWaterUse = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(dishwasherMachineType = nil, dishwasherConfiguration = nil, dishwasherClassification = nil, dishwasherLoadsPerWeek = nil, dishwasherEnergyFactor = nil, dishwasherHotWaterUse = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @dishwasherMachineType = dishwasherMachineType
       @dishwasherConfiguration = dishwasherConfiguration
       @dishwasherClassification = dishwasherClassification
@@ -11221,6 +11328,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -11240,6 +11348,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class LaundrySystemType
@@ -11412,6 +11521,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -11433,7 +11543,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(laundryType = nil, quantityOfLaundry = nil, laundryEquipmentUsage = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(laundryType = nil, quantityOfLaundry = nil, laundryEquipmentUsage = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @laundryType = laundryType
       @quantityOfLaundry = quantityOfLaundry
       @laundryEquipmentUsage = laundryEquipmentUsage
@@ -11448,6 +11558,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -11473,6 +11584,7 @@ module BuildingSync
   #   location - SOAP::SOAPString
   #   linkedSystemIDs - BuildingSync::LinkedSystemIDs
   #   userDefinedFields - BuildingSync::UserDefinedFields
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class PumpSystemType
@@ -11624,6 +11736,7 @@ module BuildingSync
     attr_accessor :location
     attr_accessor :linkedSystemIDs
     attr_accessor :userDefinedFields
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -11645,7 +11758,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(pumpEfficiency = nil, pumpMaximumFlowRate = nil, pumpMinimumFlowRate = nil, pumpInstalledFlowRate = nil, pumpPowerDemand = nil, pumpControlType = nil, pumpOperation = nil, pumpingConfiguration = nil, pumpApplication = nil, controls = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedSystemIDs = nil, userDefinedFields = nil)
+    def initialize(pumpEfficiency = nil, pumpMaximumFlowRate = nil, pumpMinimumFlowRate = nil, pumpInstalledFlowRate = nil, pumpPowerDemand = nil, pumpControlType = nil, pumpOperation = nil, pumpingConfiguration = nil, pumpApplication = nil, controls = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedSystemIDs = nil, userDefinedFields = nil, equipmentID = nil)
       @pumpEfficiency = pumpEfficiency
       @pumpMaximumFlowRate = pumpMaximumFlowRate
       @pumpMinimumFlowRate = pumpMinimumFlowRate
@@ -11666,6 +11779,7 @@ module BuildingSync
       @location = location
       @linkedSystemIDs = linkedSystemIDs
       @userDefinedFields = userDefinedFields
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -11699,6 +11813,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   linkedSystemIDs - BuildingSync::LinkedSystemIDs
   #   userDefinedFields - BuildingSync::UserDefinedFields
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class FanSystemType
@@ -11954,6 +12069,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :linkedSystemIDs
     attr_accessor :userDefinedFields
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -11975,7 +12091,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(fanEfficiency = nil, fanSize = nil, installedFlowRate = nil, fanInstalledFlowRate = nil, minimumFlowRate = nil, maximumFanPower = nil, fanPowerMinimumRatio = nil, fanType = nil, beltType = nil, fanApplication = nil, fanControlType = nil, fanPlacement = nil, motorLocationRelativeToAirStream = nil, designStaticPressure = nil, numberOfDiscreteFanSpeedsCooling = nil, numberOfDiscreteFanSpeedsHeating = nil, controls = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, linkedSystemIDs = nil, userDefinedFields = nil)
+    def initialize(fanEfficiency = nil, fanSize = nil, installedFlowRate = nil, fanInstalledFlowRate = nil, minimumFlowRate = nil, maximumFanPower = nil, fanPowerMinimumRatio = nil, fanType = nil, beltType = nil, fanApplication = nil, fanControlType = nil, fanPlacement = nil, motorLocationRelativeToAirStream = nil, designStaticPressure = nil, numberOfDiscreteFanSpeedsCooling = nil, numberOfDiscreteFanSpeedsHeating = nil, controls = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, linkedSystemIDs = nil, userDefinedFields = nil, equipmentID = nil)
       @fanEfficiency = fanEfficiency
       @fanSize = fanSize
       @installedFlowRate = installedFlowRate
@@ -12004,6 +12120,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @linkedSystemIDs = linkedSystemIDs
       @userDefinedFields = userDefinedFields
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -12030,6 +12147,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   linkedSystemIDs - BuildingSync::LinkedSystemIDs
   #   userDefinedFields - BuildingSync::UserDefinedFields
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class MotorSystemType
@@ -12230,6 +12348,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :linkedSystemIDs
     attr_accessor :userDefinedFields
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -12251,7 +12370,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(motorRPM = nil, motorBrakeHP = nil, motorHP = nil, motorEfficiency = nil, driveEfficiency = nil, fullLoadAmps = nil, motorPoleCount = nil, motorEnclosureType = nil, motorApplication = nil, controls = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, linkedSystemIDs = nil, userDefinedFields = nil)
+    def initialize(motorRPM = nil, motorBrakeHP = nil, motorHP = nil, motorEfficiency = nil, driveEfficiency = nil, fullLoadAmps = nil, motorPoleCount = nil, motorEnclosureType = nil, motorApplication = nil, controls = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, linkedSystemIDs = nil, userDefinedFields = nil, equipmentID = nil)
       @motorRPM = motorRPM
       @motorBrakeHP = motorBrakeHP
       @motorHP = motorHP
@@ -12273,6 +12392,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @linkedSystemIDs = linkedSystemIDs
       @userDefinedFields = userDefinedFields
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -12292,6 +12412,7 @@ module BuildingSync
   #   modelNumber - SOAP::SOAPString
   #   location - SOAP::SOAPString
   #   userDefinedFields - BuildingSync::UserDefinedFields
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class HeatRecoverySystemType
@@ -12411,6 +12532,7 @@ module BuildingSync
     attr_accessor :modelNumber
     attr_accessor :location
     attr_accessor :userDefinedFields
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -12432,7 +12554,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(heatRecoveryEfficiency = nil, energyRecoveryEfficiency = nil, heatRecoveryType = nil, systemIDReceivingHeat = nil, systemIDProvidingHeat = nil, controls = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, userDefinedFields = nil)
+    def initialize(heatRecoveryEfficiency = nil, energyRecoveryEfficiency = nil, heatRecoveryType = nil, systemIDReceivingHeat = nil, systemIDProvidingHeat = nil, controls = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, userDefinedFields = nil, equipmentID = nil)
       @heatRecoveryEfficiency = heatRecoveryEfficiency
       @energyRecoveryEfficiency = energyRecoveryEfficiency
       @heatRecoveryType = heatRecoveryType
@@ -12447,6 +12569,7 @@ module BuildingSync
       @modelNumber = modelNumber
       @location = location
       @userDefinedFields = userDefinedFields
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -13448,6 +13571,7 @@ module BuildingSync
   #   manufacturer - SOAP::SOAPString
   #   modelNumber - SOAP::SOAPString
   #   userDefinedFields - BuildingSync::UserDefinedFields
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class FenestrationSystemType
@@ -13993,6 +14117,7 @@ module BuildingSync
     attr_accessor :manufacturer
     attr_accessor :modelNumber
     attr_accessor :userDefinedFields
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -14014,7 +14139,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(fenestrationType = nil, fenestrationFrameMaterial = nil, fenestrationOperation = nil, weatherstripped = nil, tightnessFitCondition = nil, glassType = nil, fenestrationGasFill = nil, fenestrationGlassLayers = nil, fenestrationRValue = nil, fenestrationUFactor = nil, solarHeatGainCoefficient = nil, visibleTransmittance = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, manufacturer = nil, modelNumber = nil, userDefinedFields = nil)
+    def initialize(fenestrationType = nil, fenestrationFrameMaterial = nil, fenestrationOperation = nil, weatherstripped = nil, tightnessFitCondition = nil, glassType = nil, fenestrationGasFill = nil, fenestrationGlassLayers = nil, fenestrationRValue = nil, fenestrationUFactor = nil, solarHeatGainCoefficient = nil, visibleTransmittance = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, manufacturer = nil, modelNumber = nil, userDefinedFields = nil, equipmentID = nil)
       @fenestrationType = fenestrationType
       @fenestrationFrameMaterial = fenestrationFrameMaterial
       @fenestrationOperation = fenestrationOperation
@@ -14033,6 +14158,7 @@ module BuildingSync
       @manufacturer = manufacturer
       @modelNumber = modelNumber
       @userDefinedFields = userDefinedFields
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -14757,6 +14883,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class CriticalITSystemType
@@ -14855,6 +14982,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -14876,7 +15004,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(iTSystemType = nil, iTPeakPower = nil, iTStandbyPower = nil, iTNominalPower = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(iTSystemType = nil, iTPeakPower = nil, iTStandbyPower = nil, iTNominalPower = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @iTSystemType = iTSystemType
       @iTPeakPower = iTPeakPower
       @iTStandbyPower = iTStandbyPower
@@ -14892,6 +15020,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -14913,6 +15042,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Source - SOAP::SOAPString
   #   xmlattr_Status - SOAP::SOAPString
@@ -15014,6 +15144,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -15043,7 +15174,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(plugLoadType = nil, plugLoadPeakPower = nil, plugLoadStandbyPower = nil, plugLoadNominalPower = nil, weightedAverageLoad = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(plugLoadType = nil, plugLoadPeakPower = nil, plugLoadStandbyPower = nil, plugLoadNominalPower = nil, weightedAverageLoad = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @plugLoadType = plugLoadType
       @plugLoadPeakPower = plugLoadPeakPower
       @plugLoadStandbyPower = plugLoadStandbyPower
@@ -15060,6 +15191,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -15082,6 +15214,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Source - SOAP::SOAPString
   #   xmlattr_Status - SOAP::SOAPString
@@ -15160,6 +15293,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -15189,7 +15323,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(processLoadType = nil, processLoadPeakPower = nil, processLoadStandbyPower = nil, weightedAverageLoad = nil, heatGainFraction = nil, dutyCycle = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(processLoadType = nil, processLoadPeakPower = nil, processLoadStandbyPower = nil, weightedAverageLoad = nil, heatGainFraction = nil, dutyCycle = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @processLoadType = processLoadType
       @processLoadPeakPower = processLoadPeakPower
       @processLoadStandbyPower = processLoadStandbyPower
@@ -15207,6 +15341,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -15228,6 +15363,7 @@ module BuildingSync
   #   location - SOAP::SOAPString
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class ConveyanceSystemType
@@ -15303,6 +15439,7 @@ module BuildingSync
     attr_accessor :location
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -15324,7 +15461,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(conveyanceSystemType = nil, conveyanceLoadType = nil, conveyancePeakPower = nil, conveyanceStandbyPower = nil, controls = nil, conveyanceSystemCondition = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil)
+    def initialize(conveyanceSystemType = nil, conveyanceLoadType = nil, conveyancePeakPower = nil, conveyanceStandbyPower = nil, controls = nil, conveyanceSystemCondition = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, yearOfManufacture = nil, primaryFuel = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, equipmentID = nil)
       @conveyanceSystemType = conveyanceSystemType
       @conveyanceLoadType = conveyanceLoadType
       @conveyancePeakPower = conveyancePeakPower
@@ -15341,6 +15478,7 @@ module BuildingSync
       @location = location
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -15362,6 +15500,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class OnsiteStorageTransmissionGenerationSystemType
@@ -15744,6 +15883,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -15765,7 +15905,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(averageAnnualOperatingHours = nil, energyConversionType = nil, backupGenerator = nil, demandReduction = nil, capacity = nil, capacityUnits = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(averageAnnualOperatingHours = nil, energyConversionType = nil, backupGenerator = nil, demandReduction = nil, capacity = nil, capacityUnits = nil, controls = nil, thirdPartyCertification = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @averageAnnualOperatingHours = averageAnnualOperatingHours
       @energyConversionType = energyConversionType
       @backupGenerator = backupGenerator
@@ -15782,6 +15922,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -15801,6 +15942,7 @@ module BuildingSync
   #   location - SOAP::SOAPString
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class PoolType
@@ -15967,6 +16109,7 @@ module BuildingSync
     attr_accessor :location
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -15988,7 +16131,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(poolType = nil, poolSizeCategory = nil, poolArea = nil, poolVolume = nil, pumpDutyCycle = nil, heated = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil)
+    def initialize(poolType = nil, poolSizeCategory = nil, poolArea = nil, poolVolume = nil, pumpDutyCycle = nil, heated = nil, thirdPartyCertification = nil, quantity = nil, yearInstalled = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, equipmentID = nil)
       @poolType = poolType
       @poolSizeCategory = poolSizeCategory
       @poolArea = poolArea
@@ -16003,6 +16146,7 @@ module BuildingSync
       @location = location
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -16025,6 +16169,7 @@ module BuildingSync
   #   linkedPremises - BuildingSync::LinkedPremises
   #   userDefinedFields - BuildingSync::UserDefinedFields
   #   quantity - BuildingSync::Quantity
+  #   equipmentID - SOAP::SOAPString
   #   xmlattr_ID - SOAP::SOAPID
   #   xmlattr_Status - SOAP::SOAPString
   class WaterUseType
@@ -16125,6 +16270,7 @@ module BuildingSync
     attr_accessor :linkedPremises
     attr_accessor :userDefinedFields
     attr_accessor :quantity
+    attr_accessor :equipmentID
 
     def __xmlattr
       @__xmlattr ||= {}
@@ -16146,7 +16292,7 @@ module BuildingSync
       __xmlattr[AttrStatus] = value
     end
 
-    def initialize(waterUseType = nil, waterResource = nil, lowFlowFixtures = nil, waterFixtureRatedFlowRate = nil, waterFixtureVolumePerCycle = nil, waterFixtureCyclesPerDay = nil, waterFixtureFractionHotWater = nil, thirdPartyCertification = nil, controls = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil)
+    def initialize(waterUseType = nil, waterResource = nil, lowFlowFixtures = nil, waterFixtureRatedFlowRate = nil, waterFixtureVolumePerCycle = nil, waterFixtureCyclesPerDay = nil, waterFixtureFractionHotWater = nil, thirdPartyCertification = nil, controls = nil, yearInstalled = nil, yearOfManufacture = nil, manufacturer = nil, modelNumber = nil, location = nil, linkedPremises = nil, userDefinedFields = nil, quantity = nil, equipmentID = nil)
       @waterUseType = waterUseType
       @waterResource = waterResource
       @lowFlowFixtures = lowFlowFixtures
@@ -16164,6 +16310,7 @@ module BuildingSync
       @linkedPremises = linkedPremises
       @userDefinedFields = userDefinedFields
       @quantity = quantity
+      @equipmentID = equipmentID
       @__xmlattr = {}
     end
   end
@@ -17986,6 +18133,7 @@ module BuildingSync
 
   # {http://buildingsync.net/schemas/bedes-auc/2019}AuditorQualificationType
   class AuditorQualificationType < ::String
+    AABCCommissioningGroupACGCommissioningAuthorityCxA = new("AABC Commissioning Group (ACG) Commissioning Authority (CxA)")
     ASHRAEBuildingCommissioningProfessionalBCxP = new("ASHRAE Building Commissioning Professional (BCxP)")
     ASHRAEBuildingEnergyAssessmentProfessionalBEAP = new("ASHRAE Building Energy Assessment Professional (BEAP)")
     ASHRAEBuildingEnergyModelingProfessionalBEMP = new("ASHRAE Building Energy Modeling Professional (BEMP)")
@@ -17993,7 +18141,7 @@ module BuildingSync
     AssociateCommissioningProfessionalACP = new("Associate Commissioning Professional (ACP)")
     AssociatedAirBalanceCouncilAABCCertifiedMemberAgency = new("Associated Air Balance Council (AABC) Certified Member Agency")
     AssociatedAirBalanceCouncilAABCTestAndBalanceTechnician = new("Associated Air Balance Council (AABC) Test and Balance Technician")
-    AssociationOfEnergyEngineersCertifiedBuildingCommissioningFirmProgramCBCF = new("Association of Energy Engineers Certified Building Commissioning Firm Program (CBCF)")
+    AssociationOfEnergyEngineersCertifiedBuildingCommissioningFirmCBCF = new("Association of Energy Engineers Certified Building Commissioning Firm (CBCF)")
     AssociationOfEnergyEngineersCertifiedBuildingCommissioningProfessionalCBCP = new("Association of Energy Engineers Certified Building Commissioning Professional (CBCP)")
     AssociationOfEnergyEngineersCertifiedBuildingEnergySimulationAnalystBESA = new("Association of Energy Engineers Certified Building Energy Simulation Analyst (BESA)")
     AssociationOfEnergyEngineersCertifiedBusinessEnergyProfessionalBEP = new("Association of Energy Engineers Certified Business Energy Professional (BEP)")
@@ -18015,8 +18163,15 @@ module BuildingSync
     AssociationOfEnergyEngineersEnergyEfficiencyPractitionerEEP = new("Association of Energy Engineers Energy Efficiency Practitioner (EEP)")
     AssociationOfEnergyEngineersPerformanceContractingAndFundingProfessionalPCF = new("Association of Energy Engineers Performance Contracting and Funding Professional (PCF)")
     AssociationOfEnergyEngineersRenewableEnergyProfessionalREP = new("Association of Energy Engineers Renewable Energy Professional (REP)")
+    BuildingCommissioningAssociationBCACertifiedCommissioningProfessionalCCP = new("Building Commissioning Association (BCA) Certified Commissioning Professional (CCP)")
+    BuildingCommissioningCertificationBoardBCCBCertifiedCommissioningProfessionalCCP = new("Building Commissioning Certification Board (BCCB) Certified Commissioning Professional (CCP)")
     BuildingOperatorCertificationBOCLevel1 = new("Building Operator Certification (BOC): Level 1")
     BuildingOperatorCertificationBOCLevel2 = new("Building Operator Certification (BOC): Level 2")
+    BuildingOwnersAndManagersInstituteBOMIInternationalFacilitiesManagementAdministratorFMA = new("Building Owners and Managers Institute (BOMI) International - Facilities Management Administrator (FMA)")
+    BuildingOwnersAndManagersInstituteBOMIInternationalHighPerformanceSustainableBuildingManagementBOMIHP = new("Building Owners and Managers Institute (BOMI) International - High-Performance Sustainable Building Management (BOMI-HP)")
+    BuildingOwnersAndManagersInstituteBOMIInternationalRealPropertyAdministratorRPA = new("Building Owners and Managers Institute (BOMI) International - Real Property Administrator (RPA)")
+    BuildingOwnersAndManagersInstituteBOMIInternationalSystemMaintenanceAdministratorSMA = new("Building Owners and Managers Institute (BOMI) International - System Maintenance Administrator (SMA)")
+    BuildingOwnersAndManagersInstituteBOMIInternationalSystemMaintenanceTechnicianSMT = new("Building Owners and Managers Institute (BOMI) International - System Maintenance Technician (SMT)")
     BuildingPerformanceInstituteBPIAdvancedHomeEnergyProfessionalCrewLeaderHEPCL = new("Building Performance Institute (BPI): Advanced Home Energy Professional - Crew Leader (HEP-CL)")
     BuildingPerformanceInstituteBPIAdvancedHomeEnergyProfessionalEnergyAuditorHEPEA = new("Building Performance Institute (BPI): Advanced Home Energy Professional - Energy Auditor (HEP-EA)")
     BuildingPerformanceInstituteBPIAdvancedHomeEnergyProfessionalHEP = new("Building Performance Institute (BPI): Advanced Home Energy Professional (HEP)")
@@ -18028,13 +18183,20 @@ module BuildingSync
     CertifiedCommissioningProfessionalCCP = new("Certified Commissioning Professional (CCP)")
     CommissioningProcessManagementProfessionalCPMP = new("Commissioning Process Management Professional (CPMP)")
     DepartmentOfBuildingsDOBApprovedAgent = new("Department of Buildings (DOB) Approved Agent")
+    EnergyManagementAssociationEMAEnergyManagementProfessionalEMP = new("Energy Management Association (EMA): Energy Management Professional (EMP)")
     ExistingBuildingCommissioningProfessionalEBCP = new("Existing Building Commissioning Professional (EBCP)")
     GreenPointRaterExistingHomeMultifamilyRater = new("GreenPoint Rater Existing Home Multifamily Rater")
     HERSWholeHouseHERSIIRater = new("HERS Whole House (HERS II) Rater")
     HighPerformanceBuildingDesignProfessionalHBDP = new("High-Performance Building Design Professional (HBDP)")
     HighPressureBoilerOperatingEngineer = new("High Pressure Boiler Operating Engineer")
+    InternationalFacilityManagementAssociationIFMACertifiedFacilitiesManagerCFM = new("International Facility Management Association (IFMA) Certified Facilities Manager (CFM)")
+    InternationalFacilityManagementAssociationIFMAFacilityManagementProfessionalFMP = new("International Facility Management Association (IFMA) Facility Management Professional (FMP)")
+    InternationalFacilityManagementAssociationIFMASustainabilityFacilityProfessionalSFP = new("International Facility Management Association (IFMA) Sustainability Facility Professional (SFP)")
     InternationalUnionOfOperatingEngineersCertifiedEnergySpecialist = new("International Union of Operating Engineers Certified Energy Specialist")
-    NYSERDAFlexTechConsultant = new("NYSERDA FlexTech Consultant")
+    MechanicalElectricalAndPlumbingMEPProfessionalEngineerPE = new("Mechanical, Electrical and Plumbing (MEP) Professional Engineer (PE)")
+    NationalEnvironmentalBalancingBureauNEBBBuildingSystemsCommissioningBSC = new("National Environmental Balancing Bureau (NEBB) Building Systems Commissioning (BSC)")
+    NationalEnvironmentalBalancingBureauNEBBCommissioningProcessProfessionalCxPP = new("National Environmental Balancing Bureau (NEBB) Commissioning Process Professional (CxPP)")
+    NewYorkStateEnergyResearchAndDevelopmentAuthorityNYSERDAFlexTechConsultant = new("New York State Energy Research and Development Authority (NYSERDA) FlexTech Consultant")
     None = new("None")
     NorthwestEnergyEducationInstituteEnergyManagementCertification = new("Northwest Energy Education Institute Energy Management Certification")
     Other = new("Other")
@@ -18044,6 +18206,9 @@ module BuildingSync
     RegisteredArchitectRA = new("Registered Architect (RA)")
     ResidentialEnergyServicesNetworkRESNETCertification = new("Residential Energy Services Network (RESNET) Certification")
     ResidentialEnergyServicesNetworkRESNETHomePartner = new("Residential Energy Services Network (RESNET) - Home Partner")
+    UniversityOfWisconsinAccreditedCommissioningProcessAuthorityProfessionalCxAPOrCAP = new("University of Wisconsin Accredited Commissioning Process Authority Professional (CxAP or CAP)")
+    UniversityOfWisconsinAccreditedCommissioningProcessManagerCxM = new("University of Wisconsin Accredited Commissioning Process Manager (CxM)")
+    UniversityOfWisconsinAccreditedGreenCommissioningProcessProviderGCxPOrGCP = new("University of Wisconsin Accredited Green Commissioning Process Provider (GCxP or GCP)")
   end
 
   # {http://buildingsync.net/schemas/bedes-auc/2019}InsulationMaterialType
@@ -19880,6 +20045,7 @@ module BuildingSync
       #   reports - BuildingSync::BuildingSync::Facilities::Facility::Reports
       #   contacts - BuildingSync::BuildingSync::Facilities::Facility::Contacts
       #   tenants - BuildingSync::BuildingSync::Facilities::Facility::Tenants
+      #   auditCycles - BuildingSync::BuildingSync::Facilities::Facility::AuditCycles
       #   userDefinedFields - BuildingSync::UserDefinedFields
       #   xmlattr_ID - SOAP::SOAPID
       class Facility
@@ -20233,6 +20399,11 @@ module BuildingSync
         class Tenants < ::Array
         end
 
+        # inner class for member: AuditCycles
+        # {http://buildingsync.net/schemas/bedes-auc/2019}AuditCycles
+        class AuditCycles < ::Array
+        end
+
         attr_accessor :sites
         attr_accessor :systems
         attr_accessor :schedules
@@ -20240,6 +20411,7 @@ module BuildingSync
         attr_accessor :reports
         attr_accessor :contacts
         attr_accessor :tenants
+        attr_accessor :auditCycles
         attr_accessor :userDefinedFields
 
         def __xmlattr
@@ -20254,7 +20426,7 @@ module BuildingSync
           __xmlattr[AttrID] = value
         end
 
-        def initialize(sites = nil, systems = nil, schedules = nil, measures = nil, reports = nil, contacts = nil, tenants = nil, userDefinedFields = nil)
+        def initialize(sites = nil, systems = nil, schedules = nil, measures = nil, reports = nil, contacts = nil, tenants = nil, auditCycles = nil, userDefinedFields = nil)
           @sites = sites
           @systems = systems
           @schedules = schedules
@@ -20262,6 +20434,7 @@ module BuildingSync
           @reports = reports
           @contacts = contacts
           @tenants = tenants
+          @auditCycles = auditCycles
           @userDefinedFields = userDefinedFields
           @__xmlattr = {}
         end
@@ -20288,6 +20461,55 @@ module BuildingSync
       @facilities = facilities
       @__xmlattr = {}
     end
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}PrincipalHVACSystemType
+  class PrincipalHVACSystemType < ::String
+    ChilledBeam = new("Chilled Beam")
+    DedicatedOutdoorAirSystem = new("Dedicated Outdoor Air System")
+    FourPipeFanCoilUnit = new("Four Pipe Fan Coil Unit")
+    GroundSourceHeatPump = new("Ground Source Heat Pump")
+    Other = new("Other")
+    PackagedRooftopAirConditioner = new("Packaged Rooftop Air Conditioner")
+    PackagedRooftopHeatPump = new("Packaged Rooftop Heat Pump")
+    PackagedRooftopVAVWithElectricReheat = new("Packaged Rooftop VAV with Electric Reheat")
+    PackagedRooftopVAVWithHotWaterReheat = new("Packaged Rooftop VAV with Hot Water Reheat")
+    PackagedTerminalAirConditioner = new("Packaged Terminal Air Conditioner")
+    PackagedTerminalHeatPump = new("Packaged Terminal Heat Pump")
+    Unknown = new("Unknown")
+    VAVWithElectricReheat = new("VAV with Electric Reheat")
+    VAVWithHotWaterReheat = new("VAV with Hot Water Reheat")
+    VRFTerminalUnit = new("VRF Terminal Unit")
+    VentilationOnly = new("Ventilation Only")
+    WarmAirFurnace = new("Warm Air Furnace")
+    WaterLoopHeatPump = new("Water Loop Heat Pump")
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}PrincipalLightingSystemType
+  class PrincipalLightingSystemType < ::String
+    CompactFluorescent = new("Compact Fluorescent")
+    Halogen = new("Halogen")
+    HighIntensityDischarge = new("High Intensity Discharge")
+    Incandescent = new("Incandescent")
+    Induction = new("Induction")
+    LED = new("LED")
+    LinearFluorescent = new("Linear Fluorescent")
+    MercuryVapor = new("Mercury Vapor")
+    MetalHalide = new("Metal Halide")
+    Neon = new("Neon")
+    Other = new("Other")
+    Photoluminescent = new("Photoluminescent")
+    Plasma = new("Plasma")
+    SelfLuminous = new("Self Luminous")
+    SodiumVaporHighPressure = new("Sodium Vapor High Pressure")
+    SolidStateLighting = new("Solid State Lighting")
+    SuperT8 = new("Super T8")
+    T12 = new("T12")
+    T12HO = new("T12HO")
+    T5 = new("T5")
+    T5HO = new("T5HO")
+    T8 = new("T8")
+    Unknown = new("Unknown")
   end
 
   # {http://buildingsync.net/schemas/bedes-auc/2019}Quantity
@@ -22062,6 +22284,9 @@ module BuildingSync
     #   energyResource - BuildingSync::FuelTypes
     #   resourceUnits - SOAP::SOAPString
     #   annualSavingsNativeUnits - BuildingSync::AnnualSavingsByFuels::AnnualSavingsByFuel::AnnualSavingsNativeUnits
+    #   annualSavingsAverageGHGEmissions - BuildingSync::AnnualSavingsAverageGHGEmissions
+    #   annualSavingsMarginalGHGEmissions - BuildingSync::AnnualSavingsMarginalGHGEmissions
+    #   annualSavingsGHGEmissionIntensity - BuildingSync::AnnualSavingsGHGEmissionIntensity
     class AnnualSavingsByFuel
 
       # inner class for member: AnnualSavingsNativeUnits
@@ -22091,11 +22316,17 @@ module BuildingSync
       attr_accessor :energyResource
       attr_accessor :resourceUnits
       attr_accessor :annualSavingsNativeUnits
+      attr_accessor :annualSavingsAverageGHGEmissions
+      attr_accessor :annualSavingsMarginalGHGEmissions
+      attr_accessor :annualSavingsGHGEmissionIntensity
 
-      def initialize(energyResource = nil, resourceUnits = nil, annualSavingsNativeUnits = nil)
+      def initialize(energyResource = nil, resourceUnits = nil, annualSavingsNativeUnits = nil, annualSavingsAverageGHGEmissions = nil, annualSavingsMarginalGHGEmissions = nil, annualSavingsGHGEmissionIntensity = nil)
         @energyResource = energyResource
         @resourceUnits = resourceUnits
         @annualSavingsNativeUnits = annualSavingsNativeUnits
+        @annualSavingsAverageGHGEmissions = annualSavingsAverageGHGEmissions
+        @annualSavingsMarginalGHGEmissions = annualSavingsMarginalGHGEmissions
+        @annualSavingsGHGEmissionIntensity = annualSavingsGHGEmissionIntensity
       end
     end
   end
@@ -22264,6 +22495,121 @@ module BuildingSync
   # {http://buildingsync.net/schemas/bedes-auc/2019}AnnualSavingsGHGEmissionIntensity
   #   xmlattr_Source - SOAP::SOAPString
   class AnnualSavingsGHGEmissionIntensity < ::String
+    AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
+
+    def __xmlattr
+      @__xmlattr ||= {}
+    end
+
+    def xmlattr_Source
+      __xmlattr[AttrSource]
+    end
+
+    def xmlattr_Source=(value)
+      __xmlattr[AttrSource] = value
+    end
+
+    def initialize(*arg)
+      super
+      @__xmlattr = {}
+    end
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}LifeCycleSavingsEnergy
+  #   xmlattr_Source - SOAP::SOAPString
+  class LifeCycleSavingsEnergy < ::String
+    AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
+
+    def __xmlattr
+      @__xmlattr ||= {}
+    end
+
+    def xmlattr_Source
+      __xmlattr[AttrSource]
+    end
+
+    def xmlattr_Source=(value)
+      __xmlattr[AttrSource] = value
+    end
+
+    def initialize(*arg)
+      super
+      @__xmlattr = {}
+    end
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}LifeCycleSavingsEnergyCost
+  #   xmlattr_Source - SOAP::SOAPString
+  class LifeCycleSavingsEnergyCost < ::String
+    AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
+
+    def __xmlattr
+      @__xmlattr ||= {}
+    end
+
+    def xmlattr_Source
+      __xmlattr[AttrSource]
+    end
+
+    def xmlattr_Source=(value)
+      __xmlattr[AttrSource] = value
+    end
+
+    def initialize(*arg)
+      super
+      @__xmlattr = {}
+    end
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}LifeCycleSavingsWater
+  #   xmlattr_Source - SOAP::SOAPString
+  class LifeCycleSavingsWater < ::String
+    AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
+
+    def __xmlattr
+      @__xmlattr ||= {}
+    end
+
+    def xmlattr_Source
+      __xmlattr[AttrSource]
+    end
+
+    def xmlattr_Source=(value)
+      __xmlattr[AttrSource] = value
+    end
+
+    def initialize(*arg)
+      super
+      @__xmlattr = {}
+    end
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}LifeCycleSavingsWaterCost
+  #   xmlattr_Source - SOAP::SOAPString
+  class LifeCycleSavingsWaterCost < ::String
+    AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
+
+    def __xmlattr
+      @__xmlattr ||= {}
+    end
+
+    def xmlattr_Source
+      __xmlattr[AttrSource]
+    end
+
+    def xmlattr_Source=(value)
+      __xmlattr[AttrSource] = value
+    end
+
+    def initialize(*arg)
+      super
+      @__xmlattr = {}
+    end
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}LifeCycleSavingsAncillaryCost
+  #   xmlattr_Source - SOAP::SOAPString
+  class LifeCycleSavingsAncillaryCost < ::String
     AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
 
     def __xmlattr
@@ -23470,6 +23816,36 @@ module BuildingSync
     end
   end
 
+  # {http://buildingsync.net/schemas/bedes-auc/2019}LinkedAuditCycle
+  #   indexYearOfAuditCycle - SOAP::SOAPPositiveInteger
+  #   xmlattr_IDref - SOAP::SOAPIDREF
+  class LinkedAuditCycle
+    AttrIDref = XSD::QName.new(nil, "IDref")
+
+    attr_accessor :indexYearOfAuditCycle
+
+    def __xmlattr
+      @__xmlattr ||= {}
+    end
+
+    def xmlattr_IDref
+      __xmlattr[AttrIDref]
+    end
+
+    def xmlattr_IDref=(value)
+      __xmlattr[AttrIDref] = value
+    end
+
+    def initialize(indexYearOfAuditCycle = nil)
+      @indexYearOfAuditCycle = indexYearOfAuditCycle
+      @__xmlattr = {}
+    end
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}LinkedAuditCycles
+  class LinkedAuditCycles < ::Array
+  end
+
   # {http://buildingsync.net/schemas/bedes-auc/2019}MVCost
   #   xmlattr_Source - SOAP::SOAPString
   class MVCost < ::String
@@ -24190,6 +24566,155 @@ module BuildingSync
 
   # {http://buildingsync.net/schemas/bedes-auc/2019}SpatialUnits
   class SpatialUnits < ::Array
+  end
+
+  # {http://buildingsync.net/schemas/bedes-auc/2019}MeasureSavingsAnalysis
+  #   measureRank - BuildingSync::MeasureSavingsAnalysis::MeasureRank
+  #   referenceCase - BuildingSync::ReferenceCase
+  #   calculationMethod - BuildingSync::CalculationMethodType
+  #   annualSavingsSiteEnergy - BuildingSync::AnnualSavingsSiteEnergy
+  #   annualSavingsSourceEnergy - BuildingSync::AnnualSavingsSourceEnergy
+  #   annualSavingsCost - BuildingSync::AnnualSavingsCost
+  #   annualSavingsByFuels - BuildingSync::AnnualSavingsByFuels
+  #   summerPeakElectricityReduction - BuildingSync::SummerPeakElectricityReduction
+  #   winterPeakElectricityReduction - BuildingSync::WinterPeakElectricityReduction
+  #   annualPeakElectricityReduction - BuildingSync::AnnualPeakElectricityReduction
+  #   annualDemandSavingsCost - BuildingSync::AnnualDemandSavingsCost
+  #   annualWaterSavings - BuildingSync::AnnualWaterSavings
+  #   annualWaterCostSavings - BuildingSync::AnnualWaterCostSavings
+  #   annualSavingsAverageGHGEmissions - BuildingSync::AnnualSavingsAverageGHGEmissions
+  #   annualSavingsMarginalGHGEmissions - BuildingSync::AnnualSavingsMarginalGHGEmissions
+  #   annualSavingsGHGEmissionIntensity - BuildingSync::AnnualSavingsGHGEmissionIntensity
+  #   lifeCycleSavingsEnergy - BuildingSync::LifeCycleSavingsEnergy
+  #   lifeCycleSavingsEnergyCost - BuildingSync::LifeCycleSavingsEnergyCost
+  #   lifeCycleSavingsWater - BuildingSync::LifeCycleSavingsWater
+  #   lifeCycleSavingsWaterCost - BuildingSync::LifeCycleSavingsWaterCost
+  #   lifeCycleSavingsAncillaryCost - BuildingSync::LifeCycleSavingsAncillaryCost
+  #   oMCostAnnualSavings - BuildingSync::OMCostAnnualSavings
+  #   otherCostAnnualSavings - BuildingSync::MeasureSavingsAnalysis::OtherCostAnnualSavings
+  #   equipmentDisposalAndSalvageCosts - BuildingSync::EquipmentDisposalAndSalvageCosts
+  #   fundingFromIncentives - BuildingSync::FundingFromIncentives
+  #   fundingFromTaxCredits - BuildingSync::FundingFromTaxCredits
+  #   nPVofTaxImplications - BuildingSync::NPVofTaxImplications
+  #   costEffectivenessScreeningMethod - SOAP::SOAPString
+  #   simplePayback - BuildingSync::SimplePayback
+  #   netPresentValue - BuildingSync::NetPresentValue
+  #   internalRateOfReturn - BuildingSync::InternalRateOfReturn
+  class MeasureSavingsAnalysis
+
+    # inner class for member: MeasureRank
+    # {http://buildingsync.net/schemas/bedes-auc/2019}MeasureRank
+    #   xmlattr_Source - SOAP::SOAPString
+    class MeasureRank < ::String
+      AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
+
+      def __xmlattr
+        @__xmlattr ||= {}
+      end
+
+      def xmlattr_Source
+        __xmlattr[AttrSource]
+      end
+
+      def xmlattr_Source=(value)
+        __xmlattr[AttrSource] = value
+      end
+
+      def initialize(*arg)
+        super
+        @__xmlattr = {}
+      end
+    end
+
+    # inner class for member: OtherCostAnnualSavings
+    # {http://buildingsync.net/schemas/bedes-auc/2019}OtherCostAnnualSavings
+    #   xmlattr_Source - SOAP::SOAPString
+    class OtherCostAnnualSavings < ::String
+      AttrSource = XSD::QName.new("http://buildingsync.net/schemas/bedes-auc/2019", "Source")
+
+      def __xmlattr
+        @__xmlattr ||= {}
+      end
+
+      def xmlattr_Source
+        __xmlattr[AttrSource]
+      end
+
+      def xmlattr_Source=(value)
+        __xmlattr[AttrSource] = value
+      end
+
+      def initialize(*arg)
+        super
+        @__xmlattr = {}
+      end
+    end
+
+    attr_accessor :measureRank
+    attr_accessor :referenceCase
+    attr_accessor :calculationMethod
+    attr_accessor :annualSavingsSiteEnergy
+    attr_accessor :annualSavingsSourceEnergy
+    attr_accessor :annualSavingsCost
+    attr_accessor :annualSavingsByFuels
+    attr_accessor :summerPeakElectricityReduction
+    attr_accessor :winterPeakElectricityReduction
+    attr_accessor :annualPeakElectricityReduction
+    attr_accessor :annualDemandSavingsCost
+    attr_accessor :annualWaterSavings
+    attr_accessor :annualWaterCostSavings
+    attr_accessor :annualSavingsAverageGHGEmissions
+    attr_accessor :annualSavingsMarginalGHGEmissions
+    attr_accessor :annualSavingsGHGEmissionIntensity
+    attr_accessor :lifeCycleSavingsEnergy
+    attr_accessor :lifeCycleSavingsEnergyCost
+    attr_accessor :lifeCycleSavingsWater
+    attr_accessor :lifeCycleSavingsWaterCost
+    attr_accessor :lifeCycleSavingsAncillaryCost
+    attr_accessor :oMCostAnnualSavings
+    attr_accessor :otherCostAnnualSavings
+    attr_accessor :equipmentDisposalAndSalvageCosts
+    attr_accessor :fundingFromIncentives
+    attr_accessor :fundingFromTaxCredits
+    attr_accessor :nPVofTaxImplications
+    attr_accessor :costEffectivenessScreeningMethod
+    attr_accessor :simplePayback
+    attr_accessor :netPresentValue
+    attr_accessor :internalRateOfReturn
+
+    def initialize(measureRank = nil, referenceCase = nil, calculationMethod = nil, annualSavingsSiteEnergy = nil, annualSavingsSourceEnergy = nil, annualSavingsCost = nil, annualSavingsByFuels = nil, summerPeakElectricityReduction = nil, winterPeakElectricityReduction = nil, annualPeakElectricityReduction = nil, annualDemandSavingsCost = nil, annualWaterSavings = nil, annualWaterCostSavings = nil, annualSavingsAverageGHGEmissions = nil, annualSavingsMarginalGHGEmissions = nil, annualSavingsGHGEmissionIntensity = nil, lifeCycleSavingsEnergy = nil, lifeCycleSavingsEnergyCost = nil, lifeCycleSavingsWater = nil, lifeCycleSavingsWaterCost = nil, lifeCycleSavingsAncillaryCost = nil, oMCostAnnualSavings = nil, otherCostAnnualSavings = nil, equipmentDisposalAndSalvageCosts = nil, fundingFromIncentives = nil, fundingFromTaxCredits = nil, nPVofTaxImplications = nil, costEffectivenessScreeningMethod = nil, simplePayback = nil, netPresentValue = nil, internalRateOfReturn = nil)
+      @measureRank = measureRank
+      @referenceCase = referenceCase
+      @calculationMethod = calculationMethod
+      @annualSavingsSiteEnergy = annualSavingsSiteEnergy
+      @annualSavingsSourceEnergy = annualSavingsSourceEnergy
+      @annualSavingsCost = annualSavingsCost
+      @annualSavingsByFuels = annualSavingsByFuels
+      @summerPeakElectricityReduction = summerPeakElectricityReduction
+      @winterPeakElectricityReduction = winterPeakElectricityReduction
+      @annualPeakElectricityReduction = annualPeakElectricityReduction
+      @annualDemandSavingsCost = annualDemandSavingsCost
+      @annualWaterSavings = annualWaterSavings
+      @annualWaterCostSavings = annualWaterCostSavings
+      @annualSavingsAverageGHGEmissions = annualSavingsAverageGHGEmissions
+      @annualSavingsMarginalGHGEmissions = annualSavingsMarginalGHGEmissions
+      @annualSavingsGHGEmissionIntensity = annualSavingsGHGEmissionIntensity
+      @lifeCycleSavingsEnergy = lifeCycleSavingsEnergy
+      @lifeCycleSavingsEnergyCost = lifeCycleSavingsEnergyCost
+      @lifeCycleSavingsWater = lifeCycleSavingsWater
+      @lifeCycleSavingsWaterCost = lifeCycleSavingsWaterCost
+      @lifeCycleSavingsAncillaryCost = lifeCycleSavingsAncillaryCost
+      @oMCostAnnualSavings = oMCostAnnualSavings
+      @otherCostAnnualSavings = otherCostAnnualSavings
+      @equipmentDisposalAndSalvageCosts = equipmentDisposalAndSalvageCosts
+      @fundingFromIncentives = fundingFromIncentives
+      @fundingFromTaxCredits = fundingFromTaxCredits
+      @nPVofTaxImplications = nPVofTaxImplications
+      @costEffectivenessScreeningMethod = costEffectivenessScreeningMethod
+      @simplePayback = simplePayback
+      @netPresentValue = netPresentValue
+      @internalRateOfReturn = internalRateOfReturn
+    end
   end
 
   # {http://www.gbxml.org/schema}gbXML

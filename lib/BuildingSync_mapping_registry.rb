@@ -113,7 +113,9 @@ module BuildingSyncMappingRegistry
       ["horizontalSurroundings", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "HorizontalSurroundings")], [0, 1]],
       ["verticalSurroundings", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "VerticalSurroundings")], [0, 1]],
       ["assessments", ["BuildingSync::BuildingType::Assessments", XSD::QName.new(NsC_2019, "Assessments")], [0, 1]],
+      ["principalHVACSystemType", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "PrincipalHVACSystemType")], [0, 1]],
       ["yearOfConstruction", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "YearOfConstruction")], [0, 1]],
+      ["principalLightingSystemType", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "PrincipalLightingSystemType")], [0, 1]],
       ["yearOccupied", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "YearOccupied")], [0, 1]],
       ["yearOfLastEnergyAudit", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "YearOfLastEnergyAudit")], [0, 1]],
       ["retrocommissioningDate", ["SOAP::SOAPDate", XSD::QName.new(NsC_2019, "RetrocommissioningDate")], [0, 1]],
@@ -722,6 +724,8 @@ module BuildingSyncMappingRegistry
       ["spatialUnits", ["BuildingSync::SpatialUnits", XSD::QName.new(NsC_2019, "SpatialUnits")], [0, 1]],
       ["primaryContactID", ["BuildingSync::PrimaryContactID", XSD::QName.new(NsC_2019, "PrimaryContactID")], [0, 1]],
       ["tenantIDs", ["BuildingSync::TenantIDs[]", XSD::QName.new(NsC_2019, "TenantIDs")], [0, nil]],
+      ["principalHVACSystemType", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "PrincipalHVACSystemType")], [0, 1]],
+      ["principalLightingSystemType", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "PrincipalLightingSystemType")], [0, 1]],
       ["yearOfConstruction", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "YearOfConstruction")], [0, 1]],
       ["footprintShape", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "FootprintShape")], [0, 1]],
       ["numberOfSides", ["BuildingSync::BuildingType::Sections::Section::NumberOfSides", XSD::QName.new(NsC_2019, "NumberOfSides")], [0, 1]],
@@ -1156,6 +1160,23 @@ module BuildingSyncMappingRegistry
   )
 
   Registry.register(
+    :class => BuildingSync::AuditCycleType,
+    :schema_type => XSD::QName.new(NsC_2019, "AuditCycleType"),
+    :schema_element => [
+      ["auditCycleName", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "AuditCycleName")], [0, 1]],
+      ["auditCycleNotes", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "AuditCycleNotes")], [0, 1]],
+      ["auditCycleStartYear", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "AuditCycleStartYear")]],
+      ["auditCycleEndYear", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "AuditCycleEndYear")]],
+      ["auditCycleStartDate", ["SOAP::SOAPDate", XSD::QName.new(NsC_2019, "AuditCycleStartDate")]],
+      ["auditCycleEndDate", ["SOAP::SOAPDate", XSD::QName.new(NsC_2019, "AuditCycleEndDate")]],
+      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
+    ],
+    :schema_attribute => {
+      XSD::QName.new(nil, "ID") => "SOAP::SOAPID"
+    }
+  )
+
+  Registry.register(
     :class => BuildingSync::ScenarioType,
     :schema_type => XSD::QName.new(NsC_2019, "ScenarioType"),
     :schema_element => [
@@ -1283,6 +1304,11 @@ module BuildingSyncMappingRegistry
       ["annualSavingsAverageGHGEmissions", ["BuildingSync::AnnualSavingsAverageGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsAverageGHGEmissions")], [0, 1]],
       ["annualSavingsMarginalGHGEmissions", ["BuildingSync::AnnualSavingsMarginalGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsMarginalGHGEmissions")], [0, 1]],
       ["annualSavingsGHGEmissionIntensity", ["BuildingSync::AnnualSavingsGHGEmissionIntensity", XSD::QName.new(NsC_2019, "AnnualSavingsGHGEmissionIntensity")], [0, 1]],
+      ["lifeCycleSavingsEnergy", ["BuildingSync::LifeCycleSavingsEnergy", XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergy")], [0, 1]],
+      ["lifeCycleSavingsEnergyCost", ["BuildingSync::LifeCycleSavingsEnergyCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergyCost")], [0, 1]],
+      ["lifeCycleSavingsWater", ["BuildingSync::LifeCycleSavingsWater", XSD::QName.new(NsC_2019, "LifeCycleSavingsWater")], [0, 1]],
+      ["lifeCycleSavingsWaterCost", ["BuildingSync::LifeCycleSavingsWaterCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsWaterCost")], [0, 1]],
+      ["lifeCycleSavingsAncillaryCost", ["BuildingSync::LifeCycleSavingsAncillaryCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsAncillaryCost")], [0, 1]],
       ["simplePayback", ["BuildingSync::SimplePayback", XSD::QName.new(NsC_2019, "SimplePayback")], [0, 1]],
       ["netPresentValue", ["BuildingSync::NetPresentValue", XSD::QName.new(NsC_2019, "NetPresentValue")], [0, 1]],
       ["internalRateOfReturn", ["BuildingSync::InternalRateOfReturn", XSD::QName.new(NsC_2019, "InternalRateOfReturn")], [0, 1]],
@@ -1296,7 +1322,9 @@ module BuildingSyncMappingRegistry
     :schema_name => XSD::QName.new(NsC_2019, "MeasureID"),
     :is_anonymous => true,
     :schema_qualified => true,
-    :schema_element => [],
+    :schema_element => [
+      ["measureSavingsAnalysis", ["BuildingSync::MeasureSavingsAnalysis", XSD::QName.new(NsC_2019, "MeasureSavingsAnalysis")], [0, 1]]
+    ],
     :schema_attribute => {
       XSD::QName.new(nil, "IDref") => "SOAP::SOAPIDREF"
     }
@@ -1410,6 +1438,11 @@ module BuildingSyncMappingRegistry
       ["annualSavingsAverageGHGEmissions", ["BuildingSync::AnnualSavingsAverageGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsAverageGHGEmissions")], [0, 1]],
       ["annualSavingsMarginalGHGEmissions", ["BuildingSync::AnnualSavingsMarginalGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsMarginalGHGEmissions")], [0, 1]],
       ["annualSavingsGHGEmissionIntensity", ["BuildingSync::AnnualSavingsGHGEmissionIntensity", XSD::QName.new(NsC_2019, "AnnualSavingsGHGEmissionIntensity")], [0, 1]],
+      ["lifeCycleSavingsEnergy", ["BuildingSync::LifeCycleSavingsEnergy", XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergy")], [0, 1]],
+      ["lifeCycleSavingsEnergyCost", ["BuildingSync::LifeCycleSavingsEnergyCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergyCost")], [0, 1]],
+      ["lifeCycleSavingsWater", ["BuildingSync::LifeCycleSavingsWater", XSD::QName.new(NsC_2019, "LifeCycleSavingsWater")], [0, 1]],
+      ["lifeCycleSavingsWaterCost", ["BuildingSync::LifeCycleSavingsWaterCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsWaterCost")], [0, 1]],
+      ["lifeCycleSavingsAncillaryCost", ["BuildingSync::LifeCycleSavingsAncillaryCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsAncillaryCost")], [0, 1]],
       ["implementationPeriod", ["SOAP::SOAPInteger", XSD::QName.new(NsC_2019, "ImplementationPeriod")], [0, 1]],
       ["packageFirstCost", ["BuildingSync::ScenarioType::ScenarioType::PackageOfMeasures::PackageFirstCost", XSD::QName.new(NsC_2019, "PackageFirstCost")], [0, 1]],
       ["mVCost", ["BuildingSync::MVCost", XSD::QName.new(NsC_2019, "MVCost")], [0, 1]],
@@ -1455,6 +1488,11 @@ module BuildingSyncMappingRegistry
       ["annualSavingsAverageGHGEmissions", ["BuildingSync::AnnualSavingsAverageGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsAverageGHGEmissions")], [0, 1]],
       ["annualSavingsMarginalGHGEmissions", ["BuildingSync::AnnualSavingsMarginalGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsMarginalGHGEmissions")], [0, 1]],
       ["annualSavingsGHGEmissionIntensity", ["BuildingSync::AnnualSavingsGHGEmissionIntensity", XSD::QName.new(NsC_2019, "AnnualSavingsGHGEmissionIntensity")], [0, 1]],
+      ["lifeCycleSavingsEnergy", ["BuildingSync::LifeCycleSavingsEnergy", XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergy")], [0, 1]],
+      ["lifeCycleSavingsEnergyCost", ["BuildingSync::LifeCycleSavingsEnergyCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergyCost")], [0, 1]],
+      ["lifeCycleSavingsWater", ["BuildingSync::LifeCycleSavingsWater", XSD::QName.new(NsC_2019, "LifeCycleSavingsWater")], [0, 1]],
+      ["lifeCycleSavingsWaterCost", ["BuildingSync::LifeCycleSavingsWaterCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsWaterCost")], [0, 1]],
+      ["lifeCycleSavingsAncillaryCost", ["BuildingSync::LifeCycleSavingsAncillaryCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsAncillaryCost")], [0, 1]],
       ["simplePayback", ["BuildingSync::SimplePayback", XSD::QName.new(NsC_2019, "SimplePayback")], [0, 1]],
       ["netPresentValue", ["BuildingSync::NetPresentValue", XSD::QName.new(NsC_2019, "NetPresentValue")], [0, 1]],
       ["internalRateOfReturn", ["BuildingSync::InternalRateOfReturn", XSD::QName.new(NsC_2019, "InternalRateOfReturn")], [0, 1]],
@@ -2563,7 +2601,7 @@ module BuildingSyncMappingRegistry
       ["measureScaleOfApplication", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "MeasureScaleOfApplication")], [0, 1]],
       ["customMeasureName", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "CustomMeasureName")], [0, 1]],
       ["longDescription", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "LongDescription")], [0, 1]],
-      ["measureSavingsAnalysis", ["BuildingSync::MeasureType::MeasureSavingsAnalysis", XSD::QName.new(NsC_2019, "MeasureSavingsAnalysis")], [0, 1]],
+      ["measureSavingsAnalysis", ["BuildingSync::MeasureSavingsAnalysis", XSD::QName.new(NsC_2019, "MeasureSavingsAnalysis")], [0, 1]],
       ["mVCost", ["BuildingSync::MVCost", XSD::QName.new(NsC_2019, "MVCost")], [0, 1]],
       ["mVOption", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "MVOption")], [0, 1]],
       ["usefulLife", ["BuildingSync::MeasureType::UsefulLife", XSD::QName.new(NsC_2019, "UsefulLife")], [0, 1]],
@@ -2964,6 +3002,56 @@ module BuildingSyncMappingRegistry
   )
 
   Registry.register(
+    :class => BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::AlternativeWaterSources,
+    :schema_name => XSD::QName.new(NsC_2019, "AlternativeWaterSources"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_element => [
+      ["measureName", ["SOAP::SOAPString[]", XSD::QName.new(NsC_2019, "MeasureName")], [1, nil]]
+    ]
+  )
+
+  Registry.register(
+    :class => BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::KitchenImprovements,
+    :schema_name => XSD::QName.new(NsC_2019, "KitchenImprovements"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_element => [
+      ["measureName", ["SOAP::SOAPString[]", XSD::QName.new(NsC_2019, "MeasureName")], [1, nil]]
+    ]
+  )
+
+  Registry.register(
+    :class => BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::LaboratoryAndMedicalEquipments,
+    :schema_name => XSD::QName.new(NsC_2019, "LaboratoryAndMedicalEquipments"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_element => [
+      ["measureName", ["SOAP::SOAPString[]", XSD::QName.new(NsC_2019, "MeasureName")], [1, nil]]
+    ]
+  )
+
+  Registry.register(
+    :class => BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::IrrigationSystemsAndLandscapingImprovements,
+    :schema_name => XSD::QName.new(NsC_2019, "IrrigationSystemsAndLandscapingImprovements"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_element => [
+      ["measureName", ["SOAP::SOAPString[]", XSD::QName.new(NsC_2019, "MeasureName")], [1, nil]]
+    ]
+  )
+
+  Registry.register(
+    :class => BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::WashingEquipmentsAndTechiques,
+    :schema_name => XSD::QName.new(NsC_2019, "WashingEquipmentsAndTechiques"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_element => [
+      ["measureName", ["SOAP::SOAPString[]", XSD::QName.new(NsC_2019, "MeasureName")], [1, nil]]
+    ]
+  )
+
+  Registry.register(
     :class => BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::FutureOtherECMs,
     :schema_name => XSD::QName.new(NsC_2019, "FutureOtherECMs"),
     :is_anonymous => true,
@@ -3020,6 +3108,11 @@ module BuildingSyncMappingRegistry
       ["advancedMeteringSystems", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::AdvancedMeteringSystems", XSD::QName.new(NsC_2019, "AdvancedMeteringSystems")], [0, 1]],
       ["plugLoadReductions", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::PlugLoadReductions", XSD::QName.new(NsC_2019, "PlugLoadReductions")], [0, 1]],
       ["dataCenterImprovements", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::DataCenterImprovements", XSD::QName.new(NsC_2019, "DataCenterImprovements")], [0, 1]],
+      ["alternativeWaterSources", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::AlternativeWaterSources", XSD::QName.new(NsC_2019, "AlternativeWaterSources")], [0, 1]],
+      ["kitchenImprovements", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::KitchenImprovements", XSD::QName.new(NsC_2019, "KitchenImprovements")], [0, 1]],
+      ["laboratoryAndMedicalEquipments", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::LaboratoryAndMedicalEquipments", XSD::QName.new(NsC_2019, "LaboratoryAndMedicalEquipments")], [0, 1]],
+      ["irrigationSystemsAndLandscapingImprovements", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::IrrigationSystemsAndLandscapingImprovements", XSD::QName.new(NsC_2019, "IrrigationSystemsAndLandscapingImprovements")], [0, 1]],
+      ["washingEquipmentsAndTechiques", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::WashingEquipmentsAndTechiques", XSD::QName.new(NsC_2019, "WashingEquipmentsAndTechiques")], [0, 1]],
       ["futureOtherECMs", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::FutureOtherECMs", XSD::QName.new(NsC_2019, "FutureOtherECMs")], [0, 1]],
       ["healthAndSafety", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::HealthAndSafety", XSD::QName.new(NsC_2019, "HealthAndSafety")], [0, 1]],
       ["uncategorized", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory::Uncategorized", XSD::QName.new(NsC_2019, "Uncategorized")], [0, 1]]
@@ -3033,58 +3126,6 @@ module BuildingSyncMappingRegistry
     :schema_qualified => true,
     :schema_element => [
       ["technologyCategory", ["BuildingSync::MeasureType::TechnologyCategories::TechnologyCategory[]", XSD::QName.new(NsC_2019, "TechnologyCategory")], [1, nil]]
-    ]
-  )
-
-  Registry.register(
-    :class => BuildingSync::MeasureType::MeasureSavingsAnalysis::MeasureRank,
-    :schema_name => XSD::QName.new(NsC_2019, "MeasureRank"),
-    :is_anonymous => true,
-    :schema_qualified => true,
-    :schema_attribute => {
-      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
-    }
-  )
-
-  Registry.register(
-    :class => BuildingSync::MeasureType::MeasureSavingsAnalysis::OtherCostAnnualSavings,
-    :schema_name => XSD::QName.new(NsC_2019, "OtherCostAnnualSavings"),
-    :is_anonymous => true,
-    :schema_qualified => true,
-    :schema_attribute => {
-      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
-    }
-  )
-
-  Registry.register(
-    :class => BuildingSync::MeasureType::MeasureSavingsAnalysis,
-    :schema_name => XSD::QName.new(NsC_2019, "MeasureSavingsAnalysis"),
-    :is_anonymous => true,
-    :schema_qualified => true,
-    :schema_element => [
-      ["measureRank", ["BuildingSync::MeasureType::MeasureSavingsAnalysis::MeasureRank", XSD::QName.new(NsC_2019, "MeasureRank")], [0, 1]],
-      ["referenceCase", ["BuildingSync::ReferenceCase", XSD::QName.new(NsC_2019, "ReferenceCase")], [0, 1]],
-      ["calculationMethod", ["BuildingSync::CalculationMethodType", XSD::QName.new(NsC_2019, "CalculationMethod")], [0, 1]],
-      ["annualSavingsSiteEnergy", ["BuildingSync::AnnualSavingsSiteEnergy", XSD::QName.new(NsC_2019, "AnnualSavingsSiteEnergy")], [0, 1]],
-      ["annualSavingsSourceEnergy", ["BuildingSync::AnnualSavingsSourceEnergy", XSD::QName.new(NsC_2019, "AnnualSavingsSourceEnergy")], [0, 1]],
-      ["annualSavingsCost", ["BuildingSync::AnnualSavingsCost", XSD::QName.new(NsC_2019, "AnnualSavingsCost")], [0, 1]],
-      ["annualSavingsByFuels", ["BuildingSync::AnnualSavingsByFuels", XSD::QName.new(NsC_2019, "AnnualSavingsByFuels")], [0, 1]],
-      ["summerPeakElectricityReduction", ["BuildingSync::SummerPeakElectricityReduction", XSD::QName.new(NsC_2019, "SummerPeakElectricityReduction")], [0, 1]],
-      ["winterPeakElectricityReduction", ["BuildingSync::WinterPeakElectricityReduction", XSD::QName.new(NsC_2019, "WinterPeakElectricityReduction")], [0, 1]],
-      ["annualPeakElectricityReduction", ["BuildingSync::AnnualPeakElectricityReduction", XSD::QName.new(NsC_2019, "AnnualPeakElectricityReduction")], [0, 1]],
-      ["annualDemandSavingsCost", ["BuildingSync::AnnualDemandSavingsCost", XSD::QName.new(NsC_2019, "AnnualDemandSavingsCost")], [0, 1]],
-      ["annualWaterSavings", ["BuildingSync::AnnualWaterSavings", XSD::QName.new(NsC_2019, "AnnualWaterSavings")], [0, 1]],
-      ["annualWaterCostSavings", ["BuildingSync::AnnualWaterCostSavings", XSD::QName.new(NsC_2019, "AnnualWaterCostSavings")], [0, 1]],
-      ["oMCostAnnualSavings", ["BuildingSync::OMCostAnnualSavings", XSD::QName.new(NsC_2019, "OMCostAnnualSavings")], [0, 1]],
-      ["otherCostAnnualSavings", ["BuildingSync::MeasureType::MeasureSavingsAnalysis::OtherCostAnnualSavings", XSD::QName.new(NsC_2019, "OtherCostAnnualSavings")], [0, 1]],
-      ["equipmentDisposalAndSalvageCosts", ["BuildingSync::EquipmentDisposalAndSalvageCosts", XSD::QName.new(NsC_2019, "EquipmentDisposalAndSalvageCosts")], [0, 1]],
-      ["fundingFromIncentives", ["BuildingSync::FundingFromIncentives", XSD::QName.new(NsC_2019, "FundingFromIncentives")], [0, 1]],
-      ["fundingFromTaxCredits", ["BuildingSync::FundingFromTaxCredits", XSD::QName.new(NsC_2019, "FundingFromTaxCredits")], [0, 1]],
-      ["nPVofTaxImplications", ["BuildingSync::NPVofTaxImplications", XSD::QName.new(NsC_2019, "NPVofTaxImplications")], [0, 1]],
-      ["costEffectivenessScreeningMethod", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "CostEffectivenessScreeningMethod")], [0, 1]],
-      ["simplePayback", ["BuildingSync::SimplePayback", XSD::QName.new(NsC_2019, "SimplePayback")], [0, 1]],
-      ["netPresentValue", ["BuildingSync::NetPresentValue", XSD::QName.new(NsC_2019, "NetPresentValue")], [0, 1]],
-      ["internalRateOfReturn", ["BuildingSync::InternalRateOfReturn", XSD::QName.new(NsC_2019, "InternalRateOfReturn")], [0, 1]]
     ]
   )
 
@@ -3157,9 +3198,11 @@ module BuildingSyncMappingRegistry
       ["auditFilingStatus", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "AuditFilingStatus")], [0, 1]],
       ["earlyCompliance", ["SOAP::SOAPBoolean", XSD::QName.new(NsC_2019, "EarlyCompliance")], [0, 1]],
       ["aSHRAEAuditLevel", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ASHRAEAuditLevel")], [0, 1]],
+      ["facilityEvaluationAuditDefinition", ["BuildingSync::ReportType::FacilityEvaluationAuditDefinition", XSD::QName.new(NsC_2019, "FacilityEvaluationAuditDefinition")], [0, 1]],
       ["retrocommissioningAudit", ["SOAP::SOAPBoolean", XSD::QName.new(NsC_2019, "RetrocommissioningAudit")], [0, 1]],
       ["auditCost", ["BuildingSync::ReportType::AuditCost", XSD::QName.new(NsC_2019, "AuditCost")], [0, 1]],
       ["discountFactor", ["BuildingSync::ReportType::DiscountFactor", XSD::QName.new(NsC_2019, "DiscountFactor")], [0, 1]],
+      ["discountRate", ["BuildingSync::ReportType::DiscountRate", XSD::QName.new(NsC_2019, "DiscountRate")], [0, 1]],
       ["analysisPeriod", ["BuildingSync::ReportType::AnalysisPeriod", XSD::QName.new(NsC_2019, "AnalysisPeriod")], [0, 1]],
       ["gasPriceEscalationRate", ["BuildingSync::ReportType::GasPriceEscalationRate", XSD::QName.new(NsC_2019, "GasPriceEscalationRate")], [0, 1]],
       ["electricityPriceEscalationRate", ["BuildingSync::ReportType::ElectricityPriceEscalationRate", XSD::QName.new(NsC_2019, "ElectricityPriceEscalationRate")], [0, 1]],
@@ -3171,6 +3214,7 @@ module BuildingSyncMappingRegistry
       ["utilities", ["BuildingSync::ReportType::Utilities", XSD::QName.new(NsC_2019, "Utilities")], [0, 1]],
       ["auditorContactID", ["BuildingSync::ReportType::AuditorContactID", XSD::QName.new(NsC_2019, "AuditorContactID")], [0, 1]],
       ["linkedPremisesOrSystem", ["BuildingSync::LinkedPremisesOrSystem", XSD::QName.new(NsC_2019, "LinkedPremisesOrSystem")], [0, 1]],
+      ["linkedAuditCycles", ["BuildingSync::LinkedAuditCycles", XSD::QName.new(NsC_2019, "LinkedAuditCycles")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
     ],
     :schema_attribute => {
@@ -3211,6 +3255,19 @@ module BuildingSyncMappingRegistry
   )
 
   Registry.register(
+    :class => BuildingSync::ReportType::FacilityEvaluationAuditDefinition,
+    :schema_name => XSD::QName.new(NsC_2019, "FacilityEvaluationAuditDefinition"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_element => [ :choice,
+      ["basicOnsiteAudit", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "BasicOnsiteAudit")]],
+      ["detailedOnsiteAudit", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "DetailedOnsiteAudit")]],
+      ["basicRemoteAudit", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "BasicRemoteAudit")]],
+      ["detailedRemoteAudit", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "DetailedRemoteAudit")]]
+    ]
+  )
+
+  Registry.register(
     :class => BuildingSync::ReportType::AuditCost,
     :schema_name => XSD::QName.new(NsC_2019, "AuditCost"),
     :is_anonymous => true,
@@ -3223,6 +3280,16 @@ module BuildingSyncMappingRegistry
   Registry.register(
     :class => BuildingSync::ReportType::DiscountFactor,
     :schema_name => XSD::QName.new(NsC_2019, "DiscountFactor"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_attribute => {
+      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
+    }
+  )
+
+  Registry.register(
+    :class => BuildingSync::ReportType::DiscountRate,
+    :schema_name => XSD::QName.new(NsC_2019, "DiscountRate"),
     :is_anonymous => true,
     :schema_qualified => true,
     :schema_attribute => {
@@ -3587,7 +3654,8 @@ module BuildingSyncMappingRegistry
       ["manufacturer", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Manufacturer")], [0, 1]],
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -3693,7 +3761,8 @@ module BuildingSyncMappingRegistry
       ["manufacturer", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Manufacturer")], [0, 1]],
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -3826,7 +3895,8 @@ module BuildingSyncMappingRegistry
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
       ["thirdPartyCertification", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ThirdPartyCertification")], [0, 1]],
       ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
-      ["deliveryCondition", ["BuildingSync::EquipmentCondition", XSD::QName.new(NsC_2019, "DeliveryCondition")], [0, 1]]
+      ["deliveryCondition", ["BuildingSync::EquipmentCondition", XSD::QName.new(NsC_2019, "DeliveryCondition")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -4260,6 +4330,7 @@ module BuildingSyncMappingRegistry
         ["noCooling", ["BuildingSync::NoCoolingType", XSD::QName.new(NsC_2019, "NoCooling")], [0, 1]],
         ["unknown", ["BuildingSync::UnknownType", XSD::QName.new(NsC_2019, "Unknown")], [0, 1]]
       ],
+      ["condenserType", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "CondenserType")], [0, 1]],
       ["coolingPlantCondition", ["BuildingSync::EquipmentCondition", XSD::QName.new(NsC_2019, "CoolingPlantCondition")], [0, 1]],
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["yearInstalled", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "YearInstalled")], [0, 1]],
@@ -4565,7 +4636,8 @@ module BuildingSyncMappingRegistry
       ["integration", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Integration")], [0, 1]],
       ["linkedDeliveryIDs", ["BuildingSync::OtherHVACSystemType::LinkedDeliveryIDs", XSD::QName.new(NsC_2019, "LinkedDeliveryIDs")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -4785,7 +4857,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -5047,7 +5120,8 @@ module BuildingSyncMappingRegistry
       ["domesticHotWaterSystemCondition", ["BuildingSync::EquipmentCondition", XSD::QName.new(NsC_2019, "DomesticHotWaterSystemCondition")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -5169,7 +5243,8 @@ module BuildingSyncMappingRegistry
       ["yearOfManufacture", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "YearOfManufacture")], [0, 1]],
       ["manufacturer", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Manufacturer")], [0, 1]],
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
-      ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]]
+      ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ]
   )
 
@@ -5477,7 +5552,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -5529,7 +5605,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -5671,7 +5748,8 @@ module BuildingSyncMappingRegistry
       ["antiSweatHeaterPower", ["BuildingSync::RefrigerationSystemType::RefrigerationSystemCategory::RefrigerationUnit::AntiSweatHeaters::AntiSweatHeaterPower", XSD::QName.new(NsC_2019, "AntiSweatHeaterPower")], [0, 1]],
       ["antiSweatHeaterControls", ["SOAP::SOAPBoolean", XSD::QName.new(NsC_2019, "AntiSweatHeaterControls")], [0, 1]],
       ["manufacturer", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Manufacturer")], [0, 1]],
-      ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]]
+      ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ]
   )
 
@@ -5734,7 +5812,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -5799,7 +5878,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -5918,7 +5998,8 @@ module BuildingSyncMappingRegistry
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedSystemIDs", ["BuildingSync::LinkedSystemIDs", XSD::QName.new(NsC_2019, "LinkedSystemIDs")], [0, 1]],
-      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
+      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -6019,7 +6100,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["linkedSystemIDs", ["BuildingSync::LinkedSystemIDs", XSD::QName.new(NsC_2019, "LinkedSystemIDs")], [0, 1]],
-      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
+      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -6151,7 +6233,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["linkedSystemIDs", ["BuildingSync::LinkedSystemIDs", XSD::QName.new(NsC_2019, "LinkedSystemIDs")], [0, 1]],
-      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
+      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -6256,7 +6339,8 @@ module BuildingSyncMappingRegistry
       ["manufacturer", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Manufacturer")], [0, 1]],
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
-      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
+      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -6759,7 +6843,8 @@ module BuildingSyncMappingRegistry
       ["yearInstalled", ["SOAP::SOAPGYear", XSD::QName.new(NsC_2019, "YearInstalled")], [0, 1]],
       ["manufacturer", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Manufacturer")], [0, 1]],
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
-      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
+      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -7337,7 +7422,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -7404,7 +7490,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -7473,7 +7560,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -7531,7 +7619,8 @@ module BuildingSyncMappingRegistry
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
-      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
+      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -7588,7 +7677,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -7798,7 +7888,8 @@ module BuildingSyncMappingRegistry
       ["modelNumber", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ModelNumber")], [0, 1]],
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
-      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
+      ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -7899,7 +7990,8 @@ module BuildingSyncMappingRegistry
       ["location", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "Location")], [0, 1]],
       ["linkedPremises", ["BuildingSync::LinkedPremises", XSD::QName.new(NsC_2019, "LinkedPremises")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]],
-      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]]
+      ["quantity", ["BuildingSync::Quantity", XSD::QName.new(NsC_2019, "Quantity")], [0, 1]],
+      ["equipmentID", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "EquipmentID")], [0, 1]]
     ],
     :schema_attribute => {
       XSD::QName.new(nil, "ID") => "SOAP::SOAPID",
@@ -10005,6 +10097,16 @@ module BuildingSyncMappingRegistry
   )
 
   Registry.register(
+    :class => BuildingSync::BuildingSync::Facilities::Facility::AuditCycles,
+    :schema_name => XSD::QName.new(NsC_2019, "AuditCycles"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_element => [
+      ["auditCycle", ["BuildingSync::AuditCycleType[]", XSD::QName.new(NsC_2019, "AuditCycle")], [1, nil]]
+    ]
+  )
+
+  Registry.register(
     :class => BuildingSync::BuildingSync::Facilities::Facility,
     :schema_name => XSD::QName.new(NsC_2019, "Facility"),
     :is_anonymous => true,
@@ -10017,6 +10119,7 @@ module BuildingSyncMappingRegistry
       ["reports", ["BuildingSync::BuildingSync::Facilities::Facility::Reports", XSD::QName.new(NsC_2019, "Reports")], [0, 1]],
       ["contacts", ["BuildingSync::BuildingSync::Facilities::Facility::Contacts", XSD::QName.new(NsC_2019, "Contacts")], [0, 1]],
       ["tenants", ["BuildingSync::BuildingSync::Facilities::Facility::Tenants", XSD::QName.new(NsC_2019, "Tenants")], [0, 1]],
+      ["auditCycles", ["BuildingSync::BuildingSync::Facilities::Facility::AuditCycles", XSD::QName.new(NsC_2019, "AuditCycles")], [0, 1]],
       ["userDefinedFields", ["BuildingSync::UserDefinedFields", XSD::QName.new(NsC_2019, "UserDefinedFields")], [0, 1]]
     ],
     :schema_attribute => {
@@ -10032,6 +10135,16 @@ module BuildingSyncMappingRegistry
     :schema_element => [
       ["facility", ["BuildingSync::BuildingSync::Facilities::Facility[]", XSD::QName.new(NsC_2019, "Facility")], [1, nil]]
     ]
+  )
+
+  Registry.register(
+    :class => BuildingSync::PrincipalHVACSystemType,
+    :schema_name => XSD::QName.new(NsC_2019, "PrincipalHVACSystemType")
+  )
+
+  Registry.register(
+    :class => BuildingSync::PrincipalLightingSystemType,
+    :schema_name => XSD::QName.new(NsC_2019, "PrincipalLightingSystemType")
   )
 
   Registry.register(
@@ -11207,7 +11320,10 @@ module BuildingSyncMappingRegistry
     :schema_element => [
       ["energyResource", ["BuildingSync::FuelTypes", XSD::QName.new(NsC_2019, "EnergyResource")], [0, 1]],
       ["resourceUnits", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "ResourceUnits")], [0, 1]],
-      ["annualSavingsNativeUnits", ["BuildingSync::AnnualSavingsByFuels::AnnualSavingsByFuel::AnnualSavingsNativeUnits", XSD::QName.new(NsC_2019, "AnnualSavingsNativeUnits")], [0, 1]]
+      ["annualSavingsNativeUnits", ["BuildingSync::AnnualSavingsByFuels::AnnualSavingsByFuel::AnnualSavingsNativeUnits", XSD::QName.new(NsC_2019, "AnnualSavingsNativeUnits")], [0, 1]],
+      ["annualSavingsAverageGHGEmissions", ["BuildingSync::AnnualSavingsAverageGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsAverageGHGEmissions")], [0, 1]],
+      ["annualSavingsMarginalGHGEmissions", ["BuildingSync::AnnualSavingsMarginalGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsMarginalGHGEmissions")], [0, 1]],
+      ["annualSavingsGHGEmissionIntensity", ["BuildingSync::AnnualSavingsGHGEmissionIntensity", XSD::QName.new(NsC_2019, "AnnualSavingsGHGEmissionIntensity")], [0, 1]]
     ]
   )
 
@@ -11270,6 +11386,46 @@ module BuildingSyncMappingRegistry
   Registry.register(
     :class => BuildingSync::AnnualSavingsGHGEmissionIntensity,
     :schema_name => XSD::QName.new(NsC_2019, "AnnualSavingsGHGEmissionIntensity"),
+    :schema_attribute => {
+      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
+    }
+  )
+
+  Registry.register(
+    :class => BuildingSync::LifeCycleSavingsEnergy,
+    :schema_name => XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergy"),
+    :schema_attribute => {
+      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
+    }
+  )
+
+  Registry.register(
+    :class => BuildingSync::LifeCycleSavingsEnergyCost,
+    :schema_name => XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergyCost"),
+    :schema_attribute => {
+      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
+    }
+  )
+
+  Registry.register(
+    :class => BuildingSync::LifeCycleSavingsWater,
+    :schema_name => XSD::QName.new(NsC_2019, "LifeCycleSavingsWater"),
+    :schema_attribute => {
+      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
+    }
+  )
+
+  Registry.register(
+    :class => BuildingSync::LifeCycleSavingsWaterCost,
+    :schema_name => XSD::QName.new(NsC_2019, "LifeCycleSavingsWaterCost"),
+    :schema_attribute => {
+      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
+    }
+  )
+
+  Registry.register(
+    :class => BuildingSync::LifeCycleSavingsAncillaryCost,
+    :schema_name => XSD::QName.new(NsC_2019, "LifeCycleSavingsAncillaryCost"),
     :schema_attribute => {
       XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
     }
@@ -11945,6 +12101,25 @@ module BuildingSyncMappingRegistry
   )
 
   Registry.register(
+    :class => BuildingSync::LinkedAuditCycle,
+    :schema_name => XSD::QName.new(NsC_2019, "LinkedAuditCycle"),
+    :schema_element => [
+      ["indexYearOfAuditCycle", ["SOAP::SOAPPositiveInteger", XSD::QName.new(NsC_2019, "IndexYearOfAuditCycle")], [0, 1]]
+    ],
+    :schema_attribute => {
+      XSD::QName.new(nil, "IDref") => "SOAP::SOAPIDREF"
+    }
+  )
+
+  Registry.register(
+    :class => BuildingSync::LinkedAuditCycles,
+    :schema_name => XSD::QName.new(NsC_2019, "LinkedAuditCycles"),
+    :schema_element => [
+      ["linkedAuditCycle", ["BuildingSync::LinkedAuditCycle[]", XSD::QName.new(NsC_2019, "LinkedAuditCycle")], [0, nil]]
+    ]
+  )
+
+  Registry.register(
     :class => BuildingSync::MVCost,
     :schema_name => XSD::QName.new(NsC_2019, "MVCost"),
     :schema_attribute => {
@@ -12377,6 +12552,64 @@ module BuildingSyncMappingRegistry
     :schema_element => [
       ["spatialUnit", ["BuildingSync::SpatialUnitTypeType[]", XSD::QName.new(NsC_2019, "SpatialUnit")], [1, nil]]
     ]
+  )
+
+  Registry.register(
+    :class => BuildingSync::MeasureSavingsAnalysis,
+    :schema_name => XSD::QName.new(NsC_2019, "MeasureSavingsAnalysis"),
+    :schema_element => [
+      ["measureRank", ["BuildingSync::MeasureSavingsAnalysis::MeasureRank", XSD::QName.new(NsC_2019, "MeasureRank")], [0, 1]],
+      ["referenceCase", ["BuildingSync::ReferenceCase", XSD::QName.new(NsC_2019, "ReferenceCase")], [0, 1]],
+      ["calculationMethod", ["BuildingSync::CalculationMethodType", XSD::QName.new(NsC_2019, "CalculationMethod")], [0, 1]],
+      ["annualSavingsSiteEnergy", ["BuildingSync::AnnualSavingsSiteEnergy", XSD::QName.new(NsC_2019, "AnnualSavingsSiteEnergy")], [0, 1]],
+      ["annualSavingsSourceEnergy", ["BuildingSync::AnnualSavingsSourceEnergy", XSD::QName.new(NsC_2019, "AnnualSavingsSourceEnergy")], [0, 1]],
+      ["annualSavingsCost", ["BuildingSync::AnnualSavingsCost", XSD::QName.new(NsC_2019, "AnnualSavingsCost")], [0, 1]],
+      ["annualSavingsByFuels", ["BuildingSync::AnnualSavingsByFuels", XSD::QName.new(NsC_2019, "AnnualSavingsByFuels")], [0, 1]],
+      ["summerPeakElectricityReduction", ["BuildingSync::SummerPeakElectricityReduction", XSD::QName.new(NsC_2019, "SummerPeakElectricityReduction")], [0, 1]],
+      ["winterPeakElectricityReduction", ["BuildingSync::WinterPeakElectricityReduction", XSD::QName.new(NsC_2019, "WinterPeakElectricityReduction")], [0, 1]],
+      ["annualPeakElectricityReduction", ["BuildingSync::AnnualPeakElectricityReduction", XSD::QName.new(NsC_2019, "AnnualPeakElectricityReduction")], [0, 1]],
+      ["annualDemandSavingsCost", ["BuildingSync::AnnualDemandSavingsCost", XSD::QName.new(NsC_2019, "AnnualDemandSavingsCost")], [0, 1]],
+      ["annualWaterSavings", ["BuildingSync::AnnualWaterSavings", XSD::QName.new(NsC_2019, "AnnualWaterSavings")], [0, 1]],
+      ["annualWaterCostSavings", ["BuildingSync::AnnualWaterCostSavings", XSD::QName.new(NsC_2019, "AnnualWaterCostSavings")], [0, 1]],
+      ["annualSavingsAverageGHGEmissions", ["BuildingSync::AnnualSavingsAverageGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsAverageGHGEmissions")], [0, 1]],
+      ["annualSavingsMarginalGHGEmissions", ["BuildingSync::AnnualSavingsMarginalGHGEmissions", XSD::QName.new(NsC_2019, "AnnualSavingsMarginalGHGEmissions")], [0, 1]],
+      ["annualSavingsGHGEmissionIntensity", ["BuildingSync::AnnualSavingsGHGEmissionIntensity", XSD::QName.new(NsC_2019, "AnnualSavingsGHGEmissionIntensity")], [0, 1]],
+      ["lifeCycleSavingsEnergy", ["BuildingSync::LifeCycleSavingsEnergy", XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergy")], [0, 1]],
+      ["lifeCycleSavingsEnergyCost", ["BuildingSync::LifeCycleSavingsEnergyCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsEnergyCost")], [0, 1]],
+      ["lifeCycleSavingsWater", ["BuildingSync::LifeCycleSavingsWater", XSD::QName.new(NsC_2019, "LifeCycleSavingsWater")], [0, 1]],
+      ["lifeCycleSavingsWaterCost", ["BuildingSync::LifeCycleSavingsWaterCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsWaterCost")], [0, 1]],
+      ["lifeCycleSavingsAncillaryCost", ["BuildingSync::LifeCycleSavingsAncillaryCost", XSD::QName.new(NsC_2019, "LifeCycleSavingsAncillaryCost")], [0, 1]],
+      ["oMCostAnnualSavings", ["BuildingSync::OMCostAnnualSavings", XSD::QName.new(NsC_2019, "OMCostAnnualSavings")], [0, 1]],
+      ["otherCostAnnualSavings", ["BuildingSync::MeasureSavingsAnalysis::OtherCostAnnualSavings", XSD::QName.new(NsC_2019, "OtherCostAnnualSavings")], [0, 1]],
+      ["equipmentDisposalAndSalvageCosts", ["BuildingSync::EquipmentDisposalAndSalvageCosts", XSD::QName.new(NsC_2019, "EquipmentDisposalAndSalvageCosts")], [0, 1]],
+      ["fundingFromIncentives", ["BuildingSync::FundingFromIncentives", XSD::QName.new(NsC_2019, "FundingFromIncentives")], [0, 1]],
+      ["fundingFromTaxCredits", ["BuildingSync::FundingFromTaxCredits", XSD::QName.new(NsC_2019, "FundingFromTaxCredits")], [0, 1]],
+      ["nPVofTaxImplications", ["BuildingSync::NPVofTaxImplications", XSD::QName.new(NsC_2019, "NPVofTaxImplications")], [0, 1]],
+      ["costEffectivenessScreeningMethod", ["SOAP::SOAPString", XSD::QName.new(NsC_2019, "CostEffectivenessScreeningMethod")], [0, 1]],
+      ["simplePayback", ["BuildingSync::SimplePayback", XSD::QName.new(NsC_2019, "SimplePayback")], [0, 1]],
+      ["netPresentValue", ["BuildingSync::NetPresentValue", XSD::QName.new(NsC_2019, "NetPresentValue")], [0, 1]],
+      ["internalRateOfReturn", ["BuildingSync::InternalRateOfReturn", XSD::QName.new(NsC_2019, "InternalRateOfReturn")], [0, 1]]
+    ]
+  )
+
+  Registry.register(
+    :class => BuildingSync::MeasureSavingsAnalysis::MeasureRank,
+    :schema_name => XSD::QName.new(NsC_2019, "MeasureRank"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_attribute => {
+      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
+    }
+  )
+
+  Registry.register(
+    :class => BuildingSync::MeasureSavingsAnalysis::OtherCostAnnualSavings,
+    :schema_name => XSD::QName.new(NsC_2019, "OtherCostAnnualSavings"),
+    :is_anonymous => true,
+    :schema_qualified => true,
+    :schema_attribute => {
+      XSD::QName.new(NsC_2019, "Source") => "SOAP::SOAPString"
+    }
   )
 
   Registry.register(
